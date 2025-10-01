@@ -5,6 +5,7 @@ from typing import List, Dict, Any
 from optimizer.core.node import Node
 from optimizer.core.auth_matrix import AuthMatrix
 from optimizer.logging_config import setup_logging, get_logger
+from optimizer.api.routes import vm
 
 # Setup logging
 setup_logging()
@@ -97,3 +98,7 @@ def query_auth_matrix():
 @app.get("/", summary="Health check")
 def health_check():
     return {"status": "ok"}
+
+
+# Include VM routes
+app.include_router(vm.router, prefix="/api/v1/vm", tags=["vm"])
