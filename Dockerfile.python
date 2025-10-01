@@ -1,0 +1,25 @@
+# Stage 1: Builder
+FROM python:3.12-slim AS builder
+WORKDIR /app
+
+# Copy dependency checker script
+COPY scripts/install_dependencies.sh /tmp/install_dependencies.sh
+RUN chmod +x /tmp/install_dependencies.sh
+
+# Install build dependencies required for pybullet and other packages
+# This includes g++, gcc, make, and other build essentials
+RUN apt-get update && apt-get install -y build-essential && rm -rf /var/lib/apt/lists/*
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir --user -r requirements.txt
+
+# Stage 2: Runner
+FROM python:3.12-slim
+WORKDIR /app
+COPY --from=builder /root/.local /root/.local
+# Copy specific service code (adjust based on repo structure)
+COPY services/ ./services/
+ENV PATH=/root/.local/bin:$PATH
+ENV PYTHONUNBUFFERED=1
+# Default CMD (override in K8s manifest)
+CMD ["python"]
