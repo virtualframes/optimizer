@@ -1,0 +1,447 @@
+{
+  ".": {
+    "files": 9,
+    "bytes": 8759,
+    "lines": 297
+  },
+  "agentic_orchestration/agents": {
+    "files": 3,
+    "bytes": 1352,
+    "lines": 48
+  },
+  "agentic_orchestration/benchmarks": {
+    "files": 3,
+    "bytes": 1543,
+    "lines": 53
+  },
+  "agentic_orchestration": {
+    "files": 4,
+    "bytes": 5423,
+    "lines": 150
+  },
+  "agentic_orchestration/crawler": {
+    "files": 2,
+    "bytes": 2169,
+    "lines": 69
+  },
+  "agentic_orchestration/data/graphs": {
+    "files": 1,
+    "bytes": 1441442,
+    "lines": 49453
+  },
+  "agentic_orchestration/data/traces": {
+    "files": 2,
+    "bytes": 205984,
+    "lines": 5325
+  },
+  "agentic_orchestration/forecasting": {
+    "files": 2,
+    "bytes": 6184,
+    "lines": 162
+  },
+  "agentic_orchestration/orchestration": {
+    "files": 3,
+    "bytes": 2714,
+    "lines": 81
+  },
+  "agentic_orchestration/vm": {
+    "files": 2,
+    "bytes": 1380,
+    "lines": 34
+  },
+  "ai-workflow/activities": {
+    "files": 2,
+    "bytes": 2828,
+    "lines": 73
+  },
+  "ai-workflow/services": {
+    "files": 1,
+    "bytes": 0,
+    "lines": 0
+  },
+  "ai-workflow/services/onedrive": {
+    "files": 3,
+    "bytes": 2715,
+    "lines": 77
+  },
+  "ai-workflow/storage": {
+    "files": 2,
+    "bytes": 2045,
+    "lines": 67
+  },
+  "ai-workflow/workflows": {
+    "files": 2,
+    "bytes": 2166,
+    "lines": 78
+  },
+  "configs": {
+    "files": 1,
+    "bytes": 1141,
+    "lines": 37
+  },
+  "cross_platform_validator": {
+    "files": 3,
+    "bytes": 6274,
+    "lines": 153
+  },
+  "docs/api": {
+    "files": 1,
+    "bytes": 0,
+    "lines": 0
+  },
+  "docs": {
+    "files": 1,
+    "bytes": 7414,
+    "lines": 253
+  },
+  "docs/tree": {
+    "files": 1,
+    "bytes": 0,
+    "lines": 0
+  },
+  "examples": {
+    "files": 2,
+    "bytes": 3818,
+    "lines": 131
+  },
+  "flaw_first_optimizer": {
+    "files": 23,
+    "bytes": 36254,
+    "lines": 926
+  },
+  "frontend/src/components": {
+    "files": 2,
+    "bytes": 1108,
+    "lines": 58
+  },
+  "infra/terraform": {
+    "files": 1,
+    "bytes": 1217,
+    "lines": 44
+  },
+  "jules_mission_omega": {
+    "files": 8,
+    "bytes": 10648,
+    "lines": 229
+  },
+  "k8s/base": {
+    "files": 2,
+    "bytes": 2694,
+    "lines": 107
+  },
+  "memory": {
+    "files": 1,
+    "bytes": 1873,
+    "lines": 19
+  },
+  "memory_artifacts": {
+    "files": 1,
+    "bytes": 932,
+    "lines": 24
+  },
+  "optimizer": {
+    "files": 2,
+    "bytes": 595,
+    "lines": 25
+  },
+  "optimizer/api": {
+    "files": 2,
+    "bytes": 2646,
+    "lines": 99
+  },
+  "optimizer/apiatlas": {
+    "files": 6,
+    "bytes": 17453,
+    "lines": 447
+  },
+  "optimizer/cli": {
+    "files": 2,
+    "bytes": 1217,
+    "lines": 48
+  },
+  "optimizer/config": {
+    "files": 1,
+    "bytes": 1175,
+    "lines": 48
+  },
+  "optimizer/core": {
+    "files": 4,
+    "bytes": 4030,
+    "lines": 134
+  },
+  "optimizer/flaws": {
+    "files": 5,
+    "bytes": 6591,
+    "lines": 159
+  },
+  "optimizer/research": {
+    "files": 3,
+    "bytes": 10114,
+    "lines": 289
+  },
+  "optimizer/utils": {
+    "files": 2,
+    "bytes": 8037,
+    "lines": 266
+  },
+  "optimizer_sentinel": {
+    "files": 2,
+    "bytes": 0,
+    "lines": 0
+  },
+  "optimizer_sentinel/adapters": {
+    "files": 4,
+    "bytes": 684,
+    "lines": 20
+  },
+  "optimizer_sentinel/agents": {
+    "files": 4,
+    "bytes": 2676,
+    "lines": 69
+  },
+  "optimizer_sentinel/interfaces": {
+    "files": 2,
+    "bytes": 0,
+    "lines": 0
+  },
+  "optimizer_sentinel/storage": {
+    "files": 3,
+    "bytes": 1185,
+    "lines": 41
+  },
+  "optimizer_sentinel/workflows": {
+    "files": 3,
+    "bytes": 1473,
+    "lines": 43
+  },
+  "physixiology_api/gateway": {
+    "files": 3,
+    "bytes": 995,
+    "lines": 39
+  },
+  "policies": {
+    "files": 1,
+    "bytes": 1251,
+    "lines": 47
+  },
+  "psi_agent": {
+    "files": 1,
+    "bytes": 0,
+    "lines": 0
+  },
+  "psi_agent/agents": {
+    "files": 6,
+    "bytes": 3794,
+    "lines": 115
+  },
+  "psi_agent/alignment_monitor": {
+    "files": 1,
+    "bytes": 0,
+    "lines": 0
+  },
+  "psi_agent/alignment_monitor/benchmarking": {
+    "files": 3,
+    "bytes": 5121,
+    "lines": 125
+  },
+  "psi_agent/alignment_monitor/integration": {
+    "files": 3,
+    "bytes": 3719,
+    "lines": 87
+  },
+  "psi_agent/alignment_monitor/processing": {
+    "files": 3,
+    "bytes": 3910,
+    "lines": 102
+  },
+  "psi_agent/alignment_monitor/scanner": {
+    "files": 6,
+    "bytes": 5783,
+    "lines": 147
+  },
+  "psi_agent/daemon": {
+    "files": 2,
+    "bytes": 4096,
+    "lines": 135
+  },
+  "psi_agent/memory": {
+    "files": 3,
+    "bytes": 1621,
+    "lines": 49
+  },
+  "psi_agent/mutation": {
+    "files": 3,
+    "bytes": 2287,
+    "lines": 55
+  },
+  "psi_agent/orchestration": {
+    "files": 3,
+    "bytes": 1986,
+    "lines": 52
+  },
+  "psi_agent/utils": {
+    "files": 2,
+    "bytes": 704,
+    "lines": 25
+  },
+  "scripts": {
+    "files": 15,
+    "bytes": 31420,
+    "lines": 878
+  },
+  "sentinel_core/adapters": {
+    "files": 4,
+    "bytes": 1137,
+    "lines": 27
+  },
+  "sentinel_core/agents": {
+    "files": 9,
+    "bytes": 16632,
+    "lines": 422
+  },
+  "sentinel_core/config": {
+    "files": 1,
+    "bytes": 222,
+    "lines": 13
+  },
+  "sentinel_core/interfaces": {
+    "files": 3,
+    "bytes": 619,
+    "lines": 36
+  },
+  "sentinel_core": {
+    "files": 1,
+    "bytes": 193,
+    "lines": 9
+  },
+  "sentinel_core/storage": {
+    "files": 3,
+    "bytes": 3814,
+    "lines": 97
+  },
+  "sentinel_core/workflows": {
+    "files": 7,
+    "bytes": 3094,
+    "lines": 90
+  },
+  "services/palantir_harvester": {
+    "files": 3,
+    "bytes": 950,
+    "lines": 39
+  },
+  "services/palantir_harvester/activities": {
+    "files": 1,
+    "bytes": 392,
+    "lines": 12
+  },
+  "services/palantir_harvester/workflows": {
+    "files": 1,
+    "bytes": 435,
+    "lines": 15
+  },
+  "services": {
+    "files": 1,
+    "bytes": 47,
+    "lines": 5
+  },
+  "services/self_healing": {
+    "files": 3,
+    "bytes": 893,
+    "lines": 37
+  },
+  "services/self_healing/activities": {
+    "files": 1,
+    "bytes": 409,
+    "lines": 12
+  },
+  "services/self_healing/workflows": {
+    "files": 1,
+    "bytes": 422,
+    "lines": 15
+  },
+  "services/semantic-search-api": {
+    "files": 1,
+    "bytes": 4402,
+    "lines": 138
+  },
+  "services/semantic_search_api": {
+    "files": 1,
+    "bytes": 3676,
+    "lines": 125
+  },
+  "services/synapse-cortex/activities": {
+    "files": 1,
+    "bytes": 7572,
+    "lines": 221
+  },
+  "services/synapse-cortex": {
+    "files": 1,
+    "bytes": 1653,
+    "lines": 48
+  },
+  "services/synapse-cortex/workflows": {
+    "files": 1,
+    "bytes": 3509,
+    "lines": 103
+  },
+  "services/synapse_cortex/activities": {
+    "files": 4,
+    "bytes": 9015,
+    "lines": 261
+  },
+  "services/synapse_cortex/workflows": {
+    "files": 2,
+    "bytes": 5317,
+    "lines": 141
+  },
+  "services/xbow_validator": {
+    "files": 3,
+    "bytes": 909,
+    "lines": 37
+  },
+  "services/xbow_validator/activities": {
+    "files": 1,
+    "bytes": 457,
+    "lines": 12
+  },
+  "services/xbow_validator/workflows": {
+    "files": 1,
+    "bytes": 465,
+    "lines": 16
+  },
+  "syzygy-os": {
+    "files": 1,
+    "bytes": 1362,
+    "lines": 38
+  },
+  "syzygy-os/hosts/syzygy-gce": {
+    "files": 1,
+    "bytes": 1708,
+    "lines": 58
+  },
+  "syzygy-os/users/operator": {
+    "files": 1,
+    "bytes": 746,
+    "lines": 30
+  },
+  "task_simulator": {
+    "files": 3,
+    "bytes": 3533,
+    "lines": 97
+  },
+  "tests/optimizer_sentinel/agents": {
+    "files": 1,
+    "bytes": 2143,
+    "lines": 53
+  },
+  "tests/optimizer_sentinel": {
+    "files": 1,
+    "bytes": 1016,
+    "lines": 31
+  },
+  "tests": {
+    "files": 13,
+    "bytes": 33589,
+    "lines": 930
+  }
+}

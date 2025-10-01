@@ -1,0 +1,15 @@
+method,path,reason,file,line
+POST,/search,not_in_openapi,/app/services/semantic_search_api/main.py,48
+GET,/health,not_in_openapi,/app/services/semantic_search_api/main.py,90
+POST,/receive,not_in_openapi,/app/services/semantic_search_api/main.py,103
+POST,/search,not_in_openapi,/app/services/semantic-search-api/main.py,74
+GET,/health,not_in_openapi,/app/optimizer/apiatlas/heal.py,46
+POST,/ingest/node,not_in_openapi,/app/optimizer/api/main.py,45
+POST,/ingest/credential,not_in_openapi,/app/optimizer/api/main.py,63
+GET,/query/auth_matrix,not_in_openapi,/app/optimizer/api/main.py,89
+GET,/,not_in_openapi,/app/optimizer/api/main.py,97
+GET,/,not_in_docs,/app/optimizer/api/main.py,97
+GET,/health,not_in_openapi,/app/physixiology_api/gateway/main.py,9
+POST,/signal,not_in_openapi,/app/sentinel_core/interfaces/mobile_api.py,7
+GET,/,not_in_openapi,/app/sentinel_core/interfaces/web_api.py,9
+GET,/,not_in_docs,/app/sentinel_core/interfaces/web_api.py,9

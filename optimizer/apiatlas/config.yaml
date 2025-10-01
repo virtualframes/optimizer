@@ -1,0 +1,40 @@
+# Safe-by-default: only local probing unless ALLOW_EXTERNAL=1
+root: "."
+include:
+  - "**/*.py"
+  - "**/*.js"
+  - "**/*.ts"
+exclude:
+  - "venv/**"
+  - ".venv/**"
+  - "node_modules/**"
+  - "dist/**"
+  - "build/**"
+  - "docs/**"
+  - "tests/**"
+
+# If an OpenAPI file exists, we compare against it.
+openapi_candidates:
+  - "openapi.json"
+  - "docs/openapi.json"
+  - "swagger.json"
+
+# Health probe seeds (GET only, no path params)
+health_seeds:
+  - "/health"
+  - "/status"
+  - "/livez"
+  - "/readyz"
+
+# Hidden rules
+hidden:
+  include_in_schema_false: true
+  undocumented_vs_openapi: true
+  unreferenced_in_docs: true   # scans README/*.md lightly
+  comment_opt_out_token: "@private"  # if present on same line, do not flag
+
+# Self-heal rule switches (generate plans; do not auto-edit)
+heal:
+  suggest_add_health_route: true
+  suggest_documentation_gaps: true
+  suggest_include_in_schema_true: true
