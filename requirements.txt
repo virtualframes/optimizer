@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]
+pydantic
+pyyaml
+click
+pytest
+flake8
+pybullet
+networkx
+httpx
