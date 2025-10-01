@@ -1,0 +1,10 @@
+[console_scripts]
+api-debug = optimizer.apiatlas.cli:debug_main
+api-heal = optimizer.apiatlas.cli:heal_main
+api-health = optimizer.apiatlas.cli:health_main
+api-map = optimizer.apiatlas.cli:map_main
+jules-export-neo4j = optimizer.memory.neo4j_export:main
+jules-risk-scan = optimizer.analytics.risk_classifiers:main
+jules-service-overlay = optimizer.dev.service_route_overlay:main
+map-tree = optimizer.research.tree_mapper:main
+optimizer = optimizer.cli.main:cli
