@@ -1,0 +1,1 @@
+# Placeholder for CockroachDB Ledger class to handle time-series data and benchmark reports.
