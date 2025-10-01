@@ -14,14 +14,27 @@ setup(
         "pydantic",
         "pyyaml",
         "click",
-        "pytest",
-        "flake8",
         "pybullet",
         "networkx",
     ],
+    extras_require={
+        "dev": [
+            "pytest",
+            "flake8",
+            "httpx",
+            "temporalio",
+            "openai",
+            "pytest-asyncio",
+            "pymilvus",
+        ]
+    },
     entry_points={
         "console_scripts": [
             "optimizer=optimizer.cli.main:cli",
+            "graph-service=optimizer.graphs.service_graph:main",
+            "graph-code=optimizer.graphs.code_graph:main",
+            "graph-all=optimizer.plugins.graphs:main",
+            "graph-render=optimizer.graphs.render:main",
         ],
     },
     classifiers=[
