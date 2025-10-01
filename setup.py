@@ -14,16 +14,16 @@ setup(
         "pydantic",
         "pyyaml",
         "click",
-        "pytest",
-        "flake8",
         "pybullet",
         "networkx",
         "pathspec>=0.12.1",
         "requests>=2.32",
-        "beautifulsoup4>=4.12"
+        "beautifulsoup4>=4.12",
+        "feedparser",
     ],
     extras_require={
         "atlas": ["PyYAML>=6.0.2", "pathspec>=0.12.1", "requests>=2.32", "beautifulsoup4>=4.12"],
+        "dev": ["pytest", "flake8", "httpx", "temporalio", "openai", "pytest-asyncio", "pymilvus"],
     },
     entry_points={
         "console_scripts": [
@@ -33,6 +33,16 @@ setup(
             "api-health=optimizer.apiatlas.cli:health_main",
             "api-heal=optimizer.apiatlas.cli:heal_main",
             "api-debug=optimizer.apiatlas.cli:debug_main",
+            "jules-scrape-forks=optimizer.scraper.fork_scraper:main",
+            "jules-ingest-citations=optimizer.scraper.citation_ingestor:main",
+            "jules-map-apis=optimizer.scraper.api_extractor:main",
+            "jules-index-context=optimizer.context_engine.spacetime_indexer:main",
+            "jules-retrieve-context=optimizer.context_engine.context_retriever:main",
+            "jules-replay-mutation=optimizer.context_engine.reroute_resolver:main",
+            "jules-render-lineage=optimizer.dev.mermaid_lineage:main",
+            "jules-service-graph=optimizer.dev.service_graph:main",
+            "jules-retrieval-flow=optimizer.dev.retrieval_flow:main",
+            "agentic-api-dev=optimizer.agentic_api.run:main",
         ],
     },
     classifiers=[
