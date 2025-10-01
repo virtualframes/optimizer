@@ -1,7 +1,4 @@
-# Placeholder for schemamigrationguard
-class SchemaMigrationGuard:
-    def validate(self, target):
-        print(f"Validating schema migration for {target}")
+from .schemamigrationguard import SchemaMigrationGuard
 
 schemamigrationguard = SchemaMigrationGuard()
 
