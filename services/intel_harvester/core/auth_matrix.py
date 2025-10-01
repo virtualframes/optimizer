@@ -1,6 +1,6 @@
 import networkx as nx
 
-from optimizer.logging_config import get_logger
+from intel_harvester.logging_config import get_logger
 
 logger = get_logger(__name__)
 
@@ -43,4 +43,10 @@ class AuthMatrix:
         """
         Returns a dictionary representation of the authentication graph.
         """
-        return nx.to_dict_of_lists(self.graph)
+        # nx.to_dict_of_lists includes nodes that are only targets, with empty lists.
+        # The test expects a dictionary of only nodes that are sources.
+        adj_dict = {}
+        for u, nbrs in self.graph.adjacency():
+            if nbrs:
+                adj_dict[u] = list(nbrs.keys())
+        return adj_dict

@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: synapse-system
+bases:
+  - ../../base
+
+images:
+  - name: synapse-python
+    newName: ghcr.io/your-org/synapse-python
+    newTag: placeholder
+  - name: synapse-nodejs
+    newName: ghcr.io/your-org/synapse-nodejs
+    newTag: placeholder

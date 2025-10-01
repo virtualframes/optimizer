@@ -1,5 +1,5 @@
 from click.testing import CliRunner
-from optimizer.cli.main import cli
+from intel_harvester.cli.main import cli
 
 def test_cli_run_command():
     runner = CliRunner()
@@ -26,7 +26,7 @@ api:
 logging:
   level: "INFO"
   format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-  file: "optimizer.log"
+  file: "intel_harvester.log"
 """)
         result = runner.invoke(cli, ['run'])
         assert result.exit_code == 0

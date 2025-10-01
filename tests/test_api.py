@@ -1,5 +1,5 @@
 from fastapi.testclient import TestClient
-from optimizer.api.main import app
+from intel_harvester.api.main import app
 
 client = TestClient(app)
 

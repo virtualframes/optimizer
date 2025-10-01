@@ -1,7 +1,7 @@
 import pytest
-from optimizer.core.node import Node
-from optimizer.core.auth_matrix import AuthMatrix
-from optimizer.core.engine import Engine
+from intel_harvester.core.node import Node
+from intel_harvester.core.auth_matrix import AuthMatrix
+from intel_harvester.core.engine import Engine
 
 def test_node_creation():
     node = Node(node_id="test_node", position=(1, 2, 3), metadata={"info": "test"})

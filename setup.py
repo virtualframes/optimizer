@@ -1,13 +1,14 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="optimizer",
+    name="intel_harvester",
     version="0.1.0",
-    description="Augmented optimizer for virtual node and game-engine authentication matrix simulation.",
+    description="Service for harvesting and processing simulation data.",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
     author="Jules",
-    packages=find_packages(),
+    package_dir={"": "services"},
+    packages=find_packages(where="services"),
     install_requires=[
         "fastapi",
         "uvicorn[standard]",
@@ -17,11 +18,12 @@ setup(
         "pytest",
         "flake8",
         "pybullet",
-        "networkx"
+        "networkx",
+        "httpx"
     ],
     entry_points={
         "console_scripts": [
-            "optimizer=optimizer.cli.main:cli",
+            "intel_harvester=intel_harvester.cli.main:cli",
         ],
     },
     classifiers=[

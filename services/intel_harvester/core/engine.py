@@ -1,8 +1,8 @@
 import pybullet as p
 import time
 
-from optimizer.config.settings import settings
-from optimizer.logging_config import get_logger
+from intel_harvester.config.settings import settings
+from intel_harvester.logging_config import get_logger
 
 logger = get_logger(__name__)
 

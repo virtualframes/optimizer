@@ -2,9 +2,9 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import List, Dict, Any
 
-from optimizer.core.node import Node
-from optimizer.core.auth_matrix import AuthMatrix
-from optimizer.logging_config import setup_logging, get_logger
+from intel_harvester.core.node import Node
+from intel_harvester.core.auth_matrix import AuthMatrix
+from intel_harvester.logging_config import setup_logging, get_logger
 
 # Setup logging
 setup_logging()
