@@ -1,10 +1,13 @@
 import pybullet as p
 import time
 
-from optimizer.config.settings import settings
+from optimizer.core.settings import JulesSettings
 from optimizer.logging_config import get_logger
 
 logger = get_logger(__name__)
+
+# Instantiate the settings
+settings = JulesSettings()
 
 
 class Engine:
@@ -17,9 +20,9 @@ class Engine:
         Initializes the physics engine.
         """
         self.physics_client = p.connect(p.DIRECT)
-        p.setGravity(0, 0, settings.simulation.gravity)
-        p.setTimeStep(settings.simulation.time_step)
-        logger.info("PyBullet engine initialized.")
+        p.setGravity(0, 0, settings.simulation_gravity)
+        p.setTimeStep(settings.simulation_time_step)
+        logger.info(f"PyBullet engine ('{settings.simulation_engine}') initialized.")
 
     def step_simulation(self):
         """

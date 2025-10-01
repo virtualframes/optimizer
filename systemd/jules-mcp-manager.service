@@ -1,0 +1,25 @@
+[Unit]
+Description=Jules Mission Ω Multi-MCP Manager
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=jules
+Group=jules
+StateDirectory=jules
+RuntimeDirectory=jules
+EnvironmentFile=/etc/jules/jules.env
+WorkingDirectory=/opt/jules
+ExecStart=/opt/jules/venv/bin/python -m optimizer.mcp.server_manager
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=read-only
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

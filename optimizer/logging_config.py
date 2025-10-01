@@ -1,20 +1,22 @@
 import logging
 import sys
-from optimizer.config.settings import settings
+from optimizer.core.settings import JulesSettings
 
+# Instantiate the settings
+settings = JulesSettings()
 
 def setup_logging():
     """
     Set up logging for the application.
     """
-    log_level = getattr(logging, settings.logging.level.upper(), logging.INFO)
+    log_level = getattr(logging, settings.jules_log_level.upper(), logging.INFO)
 
     handlers = [logging.StreamHandler(sys.stdout)]
-    if settings.logging.file:
-        handlers.append(logging.FileHandler(settings.logging.file))
+    if settings.jules_log_file:
+        handlers.append(logging.FileHandler(settings.jules_log_file))
 
     logging.basicConfig(
-        level=log_level, format=settings.logging.format, handlers=handlers
+        level=log_level, format=settings.jules_log_format, handlers=handlers
     )
 
 
