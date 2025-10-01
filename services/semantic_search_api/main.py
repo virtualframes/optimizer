@@ -6,6 +6,9 @@ from fastapi import FastAPI, HTTPException
 from openai import AsyncOpenAI
 from pydantic import BaseModel
 from pymilvus import Collection, connections
+from temporalio.client import Client
+
+from services.synapse_cortex.activities import send_prompt_to_jules
 
 # Use an async client for a FastAPI app
 client = AsyncOpenAI()
@@ -89,3 +92,34 @@ async def health():
     # Basic health check to confirm the API is running.
     # A more robust check could verify the connection to Milvus.
     return {"status": "ok"}
+
+
+class PromptPayload(BaseModel):
+    taskid: str
+    context: str
+    instructions: str
+
+
+@app.post("/receive")
+async def receive_prompt(payload: PromptPayload):
+    """
+    Receives a prompt, dispatches it to a Jules agent via Temporal,
+    and returns a confirmation.
+    """
+    try:
+        # 1. Connect to Temporal
+        temporal_client = await Client.connect(
+            os.getenv("TEMPORAL_HOST", "temporal-frontend.synapse-system.svc.cluster.local:7233")
+        )
+
+        # 2. Execute the activity
+        result = await temporal_client.execute_activity(
+            send_prompt_to_jules,
+            payload.dict(),
+            task_queue="synapse-cortex-task-queue",
+            start_to_close_timeout=60,
+        )
+
+        return {"status": "success", "result": result}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
