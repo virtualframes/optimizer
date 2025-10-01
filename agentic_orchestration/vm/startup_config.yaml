@@ -1,0 +1,16 @@
+#cloud-config
+# This is a startup script for the Google Cloud VM.
+# It will be executed automatically when the instance is created.
+
+runcmd:
+  - apt-get update
+  - apt-get install -y python3-pip git
+  # Clone the repository. Replace with your actual repository URL.
+  - git clone https://github.com/your-org/agentic_orchestration.git /home/ubuntu/agentic_orchestration
+  - cd /home/ubuntu/agentic_orchestration
+  # Install Python dependencies
+  - pip3 install -r requirements.txt
+  # Set the Matplotlib backend to 'Agg' to avoid errors in a non-GUI environment
+  - export MPLBACKEND=Agg
+  # Run the main script
+  - python3 run.py
