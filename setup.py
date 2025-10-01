@@ -24,6 +24,8 @@ setup(
     ],
     extras_require={
         "atlas": ["PyYAML>=6.0.2", "pathspec>=0.12.1", "requests>=2.32", "beautifulsoup4>=4.12"],
+        "dev": ["httpx", "temporalio", "pytest-asyncio", "openai", "pymilvus"],
+        "neo4j": ["neo4j"],
     },
     entry_points={
         "console_scripts": [
@@ -33,6 +35,9 @@ setup(
             "api-health=optimizer.apiatlas.cli:health_main",
             "api-heal=optimizer.apiatlas.cli:heal_main",
             "api-debug=optimizer.apiatlas.cli:debug_main",
+            "jules-export-neo4j=optimizer.memory.neo4j_export:main",
+            "jules-service-overlay=optimizer.dev.service_route_overlay:main",
+            "jules-risk-scan=optimizer.analytics.risk_classifiers:main",
         ],
     },
     classifiers=[

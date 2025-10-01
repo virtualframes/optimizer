@@ -1,0 +1,29 @@
+name: Web Integration
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  delta-pack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.9'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .[dev,neo4j]
+      - name: Risk scan + route overlay
+        run: |
+          jules-risk-scan
+          jules-service-overlay || true
+      - name: Commit risk/overlay artifacts
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "docs(risk): risk dashboard + service→route overlays"
+          file_pattern: "audit/risk_index.jsonl docs/RISK.md docs/api/service_graph_routes.mmd"
