@@ -1,0 +1,34 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: intel-harvester
+  namespace: synapse-system
+spec:
+  schedule: "0 */6 * * *"  # Run every 6 hours
+  concurrencyPolicy: Forbid # Prevent overlapping runs
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          # CRITICAL: Update this image path to your registry
+          - name: harvester
+            image: your-registry/intel-harvester:latest
+            env:
+            # Infrastructure Endpoints
+            # Use the Milvus proxy service name for cluster mode access
+            - name: MILVUS_HOST
+              value: "milvus-proxy.synapse-system.svc.cluster.local"
+            - name: MILVUS_PORT
+              value: "19530"
+            - name: NEO4J_URI
+              value: "bolt://neo4j.synapse-system.svc.cluster.local:7687"
+            - name: NATS_URL
+              value: "nats://nats.synapse-system.svc.cluster.local:4222"
+            # Secrets Configuration
+            - name: AI_API_KEY # API key for embedding models (OpenAI, Google, etc.)
+              valueFrom:
+                secretKeyRef:
+                  name: synapse-ai-creds
+                  key: api-key
+          restartPolicy: OnFailure

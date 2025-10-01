@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: monday-sync
+  namespace: synapse-system
+spec:
+  replicas: 2 # High availability
+  selector:
+    matchLabels:
+      app: monday-sync
+  template:
+    metadata:
+      labels:
+        app: monday-sync
+    spec:
+      containers:
+      # CRITICAL: Update this image path to your registry
+      - name: monday-sync
+        image: your-registry/monday-sync:latest
+        env:
+        # Secrets Configuration (configured in Step 4)
+        - name: MONDAY_TOKEN
+          valueFrom: { secretKeyRef: { name: monday-creds, key: token } }
+        - name: GITHUB_TOKEN
+          valueFrom: { secretKeyRef: { name: github-creds, key: token } }
+        # Infrastructure Endpoints (Service Discovery within the cluster)
+        - name: TEMPORAL_ADDRESS
+          value: "temporal-frontend.synapse-system.svc.cluster.local:7233"
+        - name: NATS_URL
+          value: "nats://nats.synapse-system.svc.cluster.local:4222"
+        # Assumes CockroachDB is deployed in the 'syzygy' namespace
+        - name: DB_HOST
+          value: "cockroachdb-public.syzygy.svc.cluster.local:26257"
+        ports:
+        - containerPort: 8080 # Port for webhooks/health checks
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: monday-sync
+  namespace: synapse-system
+spec:
+  selector:
+    app: monday-sync
+  ports:
+  - port: 8080
+    targetPort: 8080
