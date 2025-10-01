@@ -2,7 +2,9 @@ import asyncio
 from temporalio.client import Client
 from temporalio.worker import Worker
 
-from .workflows.palantir_feature_harvester_workflow import PalantirFeatureHarvesterWorkflow
+from .workflows.palantir_feature_harvester_workflow import (
+    PalantirFeatureHarvesterWorkflow,
+)
 from .activities.palantir_ingestion import ingest_palantir_features
 
 

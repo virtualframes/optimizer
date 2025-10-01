@@ -2,6 +2,7 @@ import logging
 import sys
 from optimizer.config.settings import settings
 
+
 def setup_logging():
     """
     Set up logging for the application.
@@ -13,10 +14,9 @@ def setup_logging():
         handlers.append(logging.FileHandler(settings.logging.file))
 
     logging.basicConfig(
-        level=log_level,
-        format=settings.logging.format,
-        handlers=handlers
+        level=log_level, format=settings.logging.format, handlers=handlers
     )
+
 
 def get_logger(name: str):
     """

@@ -15,7 +15,9 @@ async def main():
     """The main entry point for the Temporal worker."""
     # Connect to the Temporal cluster.
     # The address is read from an environment variable for flexibility.
-    temporal_address = os.getenv("TEMPORAL_ADDRESS", "temporal-frontend.temporal.svc.cluster.local:7233")
+    temporal_address = os.getenv(
+        "TEMPORAL_ADDRESS", "temporal-frontend.temporal.svc.cluster.local:7233"
+    )
     client = await Client.connect(temporal_address)
 
     # Define the task queue name. This worker will only poll for tasks on this queue.

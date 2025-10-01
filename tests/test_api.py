@@ -3,18 +3,28 @@ from optimizer.api.main import app
 
 client = TestClient(app)
 
+
 def test_health_check():
     response = client.get("/")
     assert response.status_code == 200
     assert response.json() == {"status": "ok"}
 
+
 def test_ingest_node():
     response = client.post(
         "/ingest/node",
-        json={"node_id": "test_node", "position": [1, 2, 3], "metadata": {"key": "value"}},
+        json={
+            "node_id": "test_node",
+            "position": [1, 2, 3],
+            "metadata": {"key": "value"},
+        },
     )
     assert response.status_code == 201
-    assert response.json() == {"message": "Node ingested successfully", "node_id": "test_node"}
+    assert response.json() == {
+        "message": "Node ingested successfully",
+        "node_id": "test_node",
+    }
+
 
 def test_query_node():
     # First, ingest a node to query
@@ -31,9 +41,11 @@ def test_query_node():
         "metadata": {},
     }
 
+
 def test_query_nonexistent_node():
     response = client.get("/query/node/nonexistent_node")
     assert response.status_code == 404
+
 
 def test_ingest_credential():
     response = client.post(
@@ -42,6 +54,7 @@ def test_ingest_credential():
     )
     assert response.status_code == 201
     assert response.json() == {"message": "Credential ingested successfully"}
+
 
 def test_query_auth_matrix():
     # Ingest a credential first

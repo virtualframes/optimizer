@@ -4,10 +4,12 @@ from optimizer.logging_config import get_logger
 
 logger = get_logger(__name__)
 
+
 class AuthMatrix:
     """
     Manages node-to-node credential checks using a graph.
     """
+
     def __init__(self):
         """
         Initializes the authentication matrix.
@@ -44,8 +46,4 @@ class AuthMatrix:
         Returns a dictionary representation of the authentication graph.
         """
         # We are only interested in nodes that have outgoing edges.
-        return {
-            u: list(v.keys())
-            for u, v in self.graph.adj.items()
-            if v
-        }
+        return {u: list(v.keys()) for u, v in self.graph.adj.items() if v}

@@ -2,8 +2,12 @@ import pytest
 from temporalio.testing import WorkflowEnvironment
 from temporalio.worker import Worker
 
-from services.palantir_harvester.workflows.palantir_feature_harvester_workflow import PalantirFeatureHarvesterWorkflow
-from services.palantir_harvester.activities.palantir_ingestion import ingest_palantir_features
+from services.palantir_harvester.workflows.palantir_feature_harvester_workflow import (
+    PalantirFeatureHarvesterWorkflow,
+)
+from services.palantir_harvester.activities.palantir_ingestion import (
+    ingest_palantir_features,
+)
 
 
 @pytest.mark.asyncio

@@ -5,6 +5,7 @@ from temporalio.common import RetryPolicy
 with workflow.unsafe.imports():
     from activities.onedrive_sync import sync_onenote
 
+
 @workflow.defn
 class OneDriveSyncWorkflow:
     @workflow.run
@@ -28,6 +29,7 @@ class OneDriveSyncWorkflow:
 
         workflow.logger.info("OneDrive/OneNote sync workflow completed successfully.")
         return result
+
 
 """
 -- How to run this workflow --

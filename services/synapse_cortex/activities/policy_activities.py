@@ -6,6 +6,7 @@ import os
 # The service name deployed by the Helm chart is typically 'opa'.
 OPA_URL = os.getenv("OPA_URL", "http://opa.synapse-system.svc.cluster.local:8181")
 
+
 @activity.defn
 async def evaluate_policy(policy_path: str, input_data: dict) -> dict:
     """

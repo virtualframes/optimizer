@@ -14,7 +14,7 @@ from optimizer.utils.build_helper import (
 def test_dependency_checker_init():
     """Test DependencyChecker initialization."""
     checker = DependencyChecker()
-    assert checker.pkg_manager in ['apt-get', 'yum', 'apk', 'unknown']
+    assert checker.pkg_manager in ["apt-get", "yum", "apk", "unknown"]
     assert isinstance(checker.missing_deps, list)
 
 
@@ -22,19 +22,19 @@ def test_command_exists():
     """Test that _command_exists detects available commands."""
     checker = DependencyChecker()
     # 'python' should exist in the test environment
-    assert checker._command_exists('python') or checker._command_exists('python3')
+    assert checker._command_exists("python") or checker._command_exists("python3")
 
 
 def test_check_command():
     """Test check_command method."""
     checker = DependencyChecker()
     # Check for a command that should exist
-    result = checker.check_command('python')
+    result = checker.check_command("python")
     # Either python or python3 should exist
     if not result:
-        result = checker.check_command('python3')
+        result = checker.check_command("python3")
     # At least one should exist
-    assert result or 'python' in checker.missing_deps
+    assert result or "python" in checker.missing_deps
 
 
 def test_check_all_build_tools():
@@ -48,18 +48,20 @@ def test_check_all_build_tools():
 def test_get_installation_command():
     """Test get_installation_command returns appropriate command."""
     checker = DependencyChecker()
-    checker.missing_deps = ['gcc']
+    checker.missing_deps = ["gcc"]
     cmd = checker.get_installation_command()
     assert isinstance(cmd, str)
     assert len(cmd) > 0
     # Should contain package manager or installation instruction
-    assert any(pm in cmd.lower() for pm in ['apt-get', 'yum', 'apk', 'install', 'package'])
+    assert any(
+        pm in cmd.lower() for pm in ["apt-get", "yum", "apk", "install", "package"]
+    )
 
 
 def test_get_detailed_suggestions():
     """Test get_detailed_suggestions returns list of commands."""
     checker = DependencyChecker()
-    checker.missing_deps = ['gcc', 'g++']
+    checker.missing_deps = ["gcc", "g++"]
     suggestions = checker.get_detailed_suggestions()
     assert isinstance(suggestions, list)
     assert len(suggestions) == 2
@@ -78,7 +80,7 @@ def test_verify_and_suggest_with_error():
     checker = DependencyChecker()
     # Mock missing dependencies
     checker.check_command = lambda cmd: False
-    checker.missing_deps = ['gcc']
+    checker.missing_deps = ["gcc"]
 
     with pytest.raises(BuildDependencyError):
         checker.verify_and_suggest(raise_error=True)
@@ -87,11 +89,11 @@ def test_verify_and_suggest_with_error():
 def test_format_error_message():
     """Test _format_error_message formats properly."""
     checker = DependencyChecker()
-    checker.missing_deps = ['gcc']
+    checker.missing_deps = ["gcc"]
     message = checker._format_error_message()
     assert isinstance(message, str)
-    assert 'gcc' in message
-    assert 'ERROR' in message or 'Missing' in message
+    assert "gcc" in message
+    assert "ERROR" in message or "Missing" in message
 
 
 def test_check_build_dependencies_function():
@@ -105,7 +107,7 @@ def test_analyze_build_error_detects_gcc():
     error_output = "error: command 'gcc' failed with exit status 1"
     suggestion = analyze_build_error(error_output)
     assert suggestion is not None
-    assert 'gcc' in suggestion.lower()
+    assert "gcc" in suggestion.lower()
 
 
 def test_analyze_build_error_detects_gpp():
@@ -113,7 +115,7 @@ def test_analyze_build_error_detects_gpp():
     error_output = "g++: command not found"
     suggestion = analyze_build_error(error_output)
     assert suggestion is not None
-    assert 'g++' in suggestion.lower()
+    assert "g++" in suggestion.lower()
 
 
 def test_analyze_build_error_no_match():
@@ -125,14 +127,14 @@ def test_analyze_build_error_no_match():
 
 def test_dependency_map_has_required_managers():
     """Test that DEPENDENCY_MAP has common package managers."""
-    assert 'apt-get' in DependencyChecker.DEPENDENCY_MAP
-    assert 'yum' in DependencyChecker.DEPENDENCY_MAP
-    assert 'apk' in DependencyChecker.DEPENDENCY_MAP
+    assert "apt-get" in DependencyChecker.DEPENDENCY_MAP
+    assert "yum" in DependencyChecker.DEPENDENCY_MAP
+    assert "apk" in DependencyChecker.DEPENDENCY_MAP
 
 
 def test_dependency_map_has_required_tools():
     """Test that DEPENDENCY_MAP has required tools for each manager."""
     for manager, deps in DependencyChecker.DEPENDENCY_MAP.items():
-        assert 'gcc' in deps
-        assert 'g++' in deps
-        assert 'make' in deps
+        assert "gcc" in deps
+        assert "g++" in deps
+        assert "make" in deps

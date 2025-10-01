@@ -70,7 +70,9 @@ class SemanticSearchWorkflow:
             chunks = _chunk_array(batch["items"], 100)
             for chunk in chunks:
                 embeddings = await workflow.start_activity(
-                    generate_embeddings, chunk, start_to_close_timeout=timedelta(minutes=10)
+                    generate_embeddings,
+                    chunk,
+                    start_to_close_timeout=timedelta(minutes=10),
                 )
                 indexed_count = await workflow.start_activity(
                     index_to_milvus,
@@ -95,5 +97,7 @@ class SemanticSearchWorkflow:
             start_to_close_timeout=timedelta(minutes=1),
         )
 
-        workflow.logger.info(f"SemanticSearchWorkflow completed. Indexed {total_indexed} items.")
+        workflow.logger.info(
+            f"SemanticSearchWorkflow completed. Indexed {total_indexed} items."
+        )
         return {"indexed": total_indexed}

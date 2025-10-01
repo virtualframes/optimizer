@@ -20,22 +20,27 @@ app = FastAPI(
 nodes: Dict[str, Node] = {}
 auth_matrix = AuthMatrix()
 
+
 class NodeModel(BaseModel):
     node_id: str
     position: tuple
     metadata: Dict[str, Any] = {}
 
+
 class CredentialModel(BaseModel):
     source_node_id: str
     target_node_id: str
+
 
 @app.on_event("startup")
 async def startup_event():
     logger.info("Starting up Optimizer API.")
 
+
 @app.on_event("shutdown")
 async def shutdown_event():
     logger.info("Shutting down Optimizer API.")
+
 
 @app.post("/ingest/node", status_code=201, summary="Ingest a new node")
 def ingest_node(node_model: NodeModel):
@@ -54,6 +59,7 @@ def ingest_node(node_model: NodeModel):
     logger.info(f"Ingested node: {node.node_id}")
     return {"message": "Node ingested successfully", "node_id": node.node_id}
 
+
 @app.post("/ingest/credential", status_code=201, summary="Ingest a new credential")
 def ingest_credential(credential_model: CredentialModel):
     """
@@ -65,7 +71,10 @@ def ingest_credential(credential_model: CredentialModel):
     )
     return {"message": "Credential ingested successfully"}
 
-@app.get("/query/node/{node_id}", response_model=NodeModel, summary="Query a specific node")
+
+@app.get(
+    "/query/node/{node_id}", response_model=NodeModel, summary="Query a specific node"
+)
 def query_node(node_id: str):
     """
     Retrieves information about a specific node.
@@ -76,12 +85,14 @@ def query_node(node_id: str):
     node = nodes[node_id]
     return node.to_dict()
 
+
 @app.get("/query/auth_matrix", summary="Query the entire authentication matrix")
 def query_auth_matrix():
     """
     Retrieves the entire authentication matrix as a dictionary.
     """
     return auth_matrix.to_dict()
+
 
 @app.get("/", summary="Health check")
 def health_check():
