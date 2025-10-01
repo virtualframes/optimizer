@@ -7,6 +7,7 @@ This project provides a framework for simulating complex systems with a focus on
 - **Physics Engine Integration**: An `Engine` adapter for PyBullet for 3D physics.
 - **Authentication Matrix**: An `AuthMatrix` module for node-to-node credential checks.
 - **REST API**: A FastAPI backend with `ingest` and `query` endpoints.
+- **VM/Container Management**: API routes for deploying and managing containerized agents.
 - **CLI**: A command-line interface for launching and configuring simulations.
 
 ## Getting Started
@@ -66,6 +67,29 @@ To run the test suite:
 pytest
 ```
 
+## API Documentation
+
+The Optimizer API provides several endpoint categories:
+
+### Core Endpoints
+- **Node Management**: `/ingest/node`, `/query/node/{node_id}`
+- **Authentication Matrix**: `/ingest/credential`, `/query/auth_matrix`
+- **Health Check**: `/`
+
+### VM/Container Management (Jules Mission Ω)
+New VM routes for managing containerized agents:
+- **Deploy Agent**: `POST /api/v1/vm/deploy` - Clone repo, build image, run container
+- **List Deployments**: `GET /api/v1/vm/list` - List active containers
+- **Stop Deployment**: `POST /api/v1/vm/stop` - Stop/remove container
+- **Health Check**: `GET /api/v1/vm/health/{container_name}` - Check container health
+
+See [docs/api/vm-routes.md](docs/api/vm-routes.md) for detailed API documentation.
+
+**Interactive API Documentation:**
+When the API server is running, visit:
+- Swagger UI: `http://localhost:8080/docs`
+- ReDoc: `http://localhost:8080/redoc`
+
 ## Build Dependencies
 
 This project includes utilities to automatically detect missing build dependencies and suggest installation commands.
@@ -108,3 +132,33 @@ if suggestion:
 
 ## CI/CD
 This project uses GitHub Actions for continuous integration. The workflow runs `pytest` and `flake8` on every push and pull request.
+
+## Contributing
+
+We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines on:
+- Code of Conduct
+- Development workflow (GitHub Flow)
+- Commit message conventions (Conventional Commits)
+- Code style (Black + Ruff)
+- Testing requirements
+- Pull request process
+
+Quick start:
+```bash
+# Fork and clone the repo
+git checkout -b feat/my-feature
+
+# Install pre-commit hooks
+pip install pre-commit
+pre-commit install
+
+# Make changes, test, and commit
+black .
+ruff check .
+pytest
+git commit -m "feat: my new feature"
+```
+
+## License
+
+MIT License - see LICENSE file for details.
