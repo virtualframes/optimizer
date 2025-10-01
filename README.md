@@ -14,6 +14,19 @@ This project provides a framework for simulating complex systems with a focus on
 ### Prerequisites
 - Python 3.9+
 - Docker (optional, for containerized deployment)
+- Build tools (gcc, g++, make) - required for compiling Python packages like pybullet
+
+### Checking System Dependencies
+Before installing, you can check if all required build dependencies are available:
+```bash
+# Using the shell script
+./scripts/install_dependencies.sh
+
+# Or using Python
+python -m optimizer.utils.build_helper
+```
+
+If any dependencies are missing, the script will provide installation commands for your system.
 
 ### Installation
 1. Clone the repository:
@@ -21,7 +34,18 @@ This project provides a framework for simulating complex systems with a focus on
    git clone https://github.com/your-username/optimizer.git
    cd optimizer
    ```
-2. Install dependencies:
+2. Check and install system dependencies (if needed):
+   ```bash
+   # Check what's missing
+   ./scripts/install_dependencies.sh
+
+   # Install on Ubuntu/Debian
+   sudo apt-get update && sudo apt-get install -y build-essential
+
+   # Or on Red Hat/CentOS
+   sudo yum groupinstall -y 'Development Tools'
+   ```
+3. Install Python dependencies:
    ```bash
    pip install -r requirements.txt
    ```
@@ -40,6 +64,46 @@ This project provides a framework for simulating complex systems with a focus on
 To run the test suite:
 ```bash
 pytest
+```
+
+## Build Dependencies
+
+This project includes utilities to automatically detect missing build dependencies and suggest installation commands.
+
+### Automated Dependency Checking
+The build process automatically checks for required system dependencies (gcc, g++, make) and provides helpful error messages with installation instructions if any are missing.
+
+### Using the Dependency Checker
+
+**Shell Script:**
+```bash
+./scripts/install_dependencies.sh
+```
+
+**Python Module:**
+```python
+from optimizer.utils.build_helper import check_build_dependencies, DependencyChecker
+
+# Simple check
+if not check_build_dependencies():
+    print("Some dependencies are missing")
+
+# Detailed checking
+checker = DependencyChecker()
+all_present, message = checker.verify_and_suggest()
+if not all_present:
+    print(message)
+```
+
+### Analyzing Build Errors
+The build helper can also analyze error output to detect missing dependencies:
+```python
+from optimizer.utils.build_helper import analyze_build_error
+
+error_output = "error: command 'gcc' failed with exit status 1"
+suggestion = analyze_build_error(error_output)
+if suggestion:
+    print(suggestion)
 ```
 
 ## CI/CD
