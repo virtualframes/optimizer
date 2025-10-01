@@ -97,15 +97,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# Environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-
 # Docker
 .dockerignore
 docker-compose.yml

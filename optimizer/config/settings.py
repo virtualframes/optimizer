@@ -20,10 +20,23 @@ class LoggingSettings(BaseModel):
     file: Optional[str] = "optimizer.log"
 
 
+class OpenAISettings(BaseModel):
+    api_key: Optional[str] = None
+
+class MilvusSettings(BaseModel):
+    host: Optional[str] = "localhost"
+    port: Optional[int] = 19530
+
+class TemporalSettings(BaseModel):
+    server_url: Optional[str] = "localhost:7233"
+
 class Settings(BaseModel):
     simulation: SimulationSettings
     api: APISettings
     logging: LoggingSettings
+    openai: OpenAISettings = Field(default_factory=OpenAISettings)
+    milvus: MilvusSettings = Field(default_factory=MilvusSettings)
+    temporal: TemporalSettings = Field(default_factory=TemporalSettings)
 
 
 def load_config(path: str = "config.yml") -> Settings:

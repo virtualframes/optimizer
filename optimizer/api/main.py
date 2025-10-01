@@ -21,9 +21,12 @@ nodes: Dict[str, Node] = {}
 auth_matrix = AuthMatrix()
 
 
+from typing import Tuple
+
 class NodeModel(BaseModel):
     node_id: str
-    position: tuple
+    position: Tuple[float, float, float]
+    velocity: Tuple[float, float, float] = (0.0, 0.0, 0.0)
     metadata: Dict[str, Any] = {}
 
 
@@ -32,14 +35,17 @@ class CredentialModel(BaseModel):
     target_node_id: str
 
 
-@app.on_event("startup")
-async def startup_event():
+from contextlib import asynccontextmanager
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Startup logic
     logger.info("Starting up Optimizer API.")
-
-
-@app.on_event("shutdown")
-async def shutdown_event():
+    yield
+    # Shutdown logic
     logger.info("Shutting down Optimizer API.")
+
+app.router.lifespan_context = lifespan
 
 
 @app.post("/ingest/node", status_code=201, summary="Ingest a new node")
@@ -53,6 +59,7 @@ def ingest_node(node_model: NodeModel):
     node = Node(
         node_id=node_model.node_id,
         position=node_model.position,
+        velocity=node_model.velocity,
         metadata=node_model.metadata,
     )
     nodes[node.node_id] = node

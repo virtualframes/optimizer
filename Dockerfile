@@ -1,26 +1,34 @@
-# Use an official Python runtime as a parent image
-FROM python:3.9-slim
+# Stage 1: Builder - Installs dependencies
+FROM python:3.9-slim AS builder
 
-# Set the working directory in the container
 WORKDIR /app
 
-# Copy dependency checker script
-COPY scripts/install_dependencies.sh /tmp/install_dependencies.sh
-RUN chmod +x /tmp/install_dependencies.sh
-
-# Install build dependencies required for pybullet and other packages
-# The script checks for missing dependencies and provides helpful suggestions
+# Install system-level build dependencies
 RUN apt-get update && apt-get install -y build-essential && rm -rf /var/lib/apt/lists/*
 
-# Copy the requirements file and install dependencies
+# Copy and install Python dependencies
 COPY requirements.txt .
+RUN pip install --no-cache-dir --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the application code
+# Copy the application code and install it
+COPY . .
+RUN pip install -e .
+
+# Stage 2: Runner - Creates the final, lean image
+FROM python:3.9-slim
+
+WORKDIR /app
+
+# Copy installed dependencies from the builder stage
+COPY --from=builder /usr/local/lib/python3.9/site-packages/ /usr/local/lib/python3.9/site-packages/
+COPY --from=builder /usr/local/bin/ /usr/local/bin/
+
+# Copy the application code
 COPY . .
 
-# Expose the port the app runs on
+# Expose the API port
 EXPOSE 8000
 
-# Command to run the API
+# Command to run the FastAPI application
 CMD ["uvicorn", "optimizer.api.main:app", "--host", "0.0.0.0", "--port", "8000"]
