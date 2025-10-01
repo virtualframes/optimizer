@@ -15,6 +15,10 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: ${{ matrix.python-version }}
+      - name: Check system dependencies
+        run: |
+          chmod +x scripts/install_dependencies.sh
+          ./scripts/install_dependencies.sh
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
