@@ -5,37 +5,48 @@ from typing import List, Dict, Any
 from optimizer.core.node import Node
 from optimizer.core.auth_matrix import AuthMatrix
 from optimizer.logging_config import setup_logging, get_logger
+from optimizer.config.settings import load_config, Settings
 
-# Setup logging
-setup_logging()
 logger = get_logger(__name__)
+
+from contextlib import asynccontextmanager
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """
+    Application lifespan manager to handle startup and shutdown events.
+    """
+    # Load configuration and setup logging
+    settings = load_config()
+    setup_logging(settings)
+    app.state.settings = settings
+    logger.info("Starting up Optimizer API.")
+    yield
+    logger.info("Shutting down Optimizer API.")
+
 
 app = FastAPI(
     title="Optimizer API",
     description="API for managing and querying the virtual node simulation.",
     version="0.1.0",
+    lifespan=lifespan,
 )
 
 # In-memory storage (for demonstration purposes)
 nodes: Dict[str, Node] = {}
 auth_matrix = AuthMatrix()
 
+
 class NodeModel(BaseModel):
     node_id: str
     position: tuple
     metadata: Dict[str, Any] = {}
 
+
 class CredentialModel(BaseModel):
     source_node_id: str
     target_node_id: str
-
-@app.on_event("startup")
-async def startup_event():
-    logger.info("Starting up Optimizer API.")
-
-@app.on_event("shutdown")
-async def shutdown_event():
-    logger.info("Shutting down Optimizer API.")
 
 @app.post("/ingest/node", status_code=201, summary="Ingest a new node")
 def ingest_node(node_model: NodeModel):

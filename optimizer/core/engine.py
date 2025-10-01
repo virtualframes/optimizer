@@ -1,7 +1,7 @@
 import pybullet as p
 import time
 
-from optimizer.config.settings import settings
+from optimizer.config.settings import Settings
 from optimizer.logging_config import get_logger
 
 logger = get_logger(__name__)
@@ -10,7 +10,7 @@ class Engine:
     """
     An adapter for the PyBullet physics engine.
     """
-    def __init__(self):
+    def __init__(self, settings: Settings):
         """
         Initializes the physics engine.
         """

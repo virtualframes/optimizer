@@ -33,10 +33,7 @@ def load_config(path: str = "config.yml") -> Settings:
             config_data = yaml.safe_load(f)
         return Settings(**config_data)
     except FileNotFoundError:
-        return Settings(
-            simulation=SimulationSettings(),
-            api=APISettings(),
-            logging=LoggingSettings(),
-        )
+        raise
 
-settings = load_config()
+# settings = load_config() # This line is commented out to prevent import-time side effects.
+# Configuration should be loaded explicitly by the application entry point.

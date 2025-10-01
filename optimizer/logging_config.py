@@ -1,8 +1,8 @@
 import logging
 import sys
-from optimizer.config.settings import settings
+from optimizer.config.settings import Settings
 
-def setup_logging():
+def setup_logging(settings: Settings):
     """
     Set up logging for the application.
     """

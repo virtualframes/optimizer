@@ -41,6 +41,12 @@ class AuthMatrix:
 
     def to_dict(self):
         """
-        Returns a dictionary representation of the authentication graph.
+        Returns a dictionary representation of the authentication graph,
+        only including nodes with outgoing edges.
         """
-        return nx.to_dict_of_lists(self.graph)
+        dict_of_lists = nx.to_dict_of_lists(self.graph)
+        return {
+            node: neighbors
+            for node, neighbors in dict_of_lists.items()
+            if neighbors
+        }

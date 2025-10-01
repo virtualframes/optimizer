@@ -19,14 +19,14 @@ def run(config_path):
         settings = load_config(config_path)
     except FileNotFoundError:
         click.echo(f"Error: Configuration file not found at '{config_path}'")
-        return
+        raise click.Abort()
 
-    setup_logging()
+    setup_logging(settings)
     logger = get_logger(__name__)
 
     logger.info(f"Starting simulation from CLI with config from {config_path}...")
 
-    engine = Engine()
+    engine = Engine(settings)
 
     # This is a placeholder for a simulation loop.
     # In a real application, you would load nodes and run the simulation for a specified duration.

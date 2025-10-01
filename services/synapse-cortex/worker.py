@@ -5,7 +5,7 @@ from temporalio.client import Client
 from temporalio.worker import Worker
 
 # Import the workflow and activities to register them with the worker
-from services.synapse_cortex.activities import embedding_activities
+from services.synapse_cortex.activities import embedding_activities, jules_activities
 from services.synapse_cortex.workflows.semantic_search_workflow import (
     SemanticSearchWorkflow,
 )
@@ -34,6 +34,7 @@ async def main():
             embedding_activities.fetch_audit_events,
             embedding_activities.prune_stale_vectors,
             embedding_activities.publish_metrics,
+            jules_activities.auto_debug_and_patch,
         ],
     )
 

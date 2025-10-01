@@ -2,6 +2,7 @@ import pytest
 from optimizer.core.node import Node
 from optimizer.core.auth_matrix import AuthMatrix
 from optimizer.core.engine import Engine
+from optimizer.config.settings import Settings, SimulationSettings, APISettings, LoggingSettings
 
 def test_node_creation():
     node = Node(node_id="test_node", position=(1, 2, 3), metadata={"info": "test"})
@@ -30,12 +31,22 @@ def test_auth_matrix_to_dict():
     assert auth.to_dict() == {"node1": ["node2", "node3"]}
 
 def test_engine_initialization():
-    engine = Engine()
+    settings = Settings(
+        simulation=SimulationSettings(),
+        api=APISettings(),
+        logging=LoggingSettings(),
+    )
+    engine = Engine(settings)
     assert engine.physics_client is not None
     engine.disconnect()
 
 def test_engine_simulation_step():
-    engine = Engine()
+    settings = Settings(
+        simulation=SimulationSettings(),
+        api=APISettings(),
+        logging=LoggingSettings(),
+    )
+    engine = Engine(settings)
     # Not much to assert here without visible objects, but we can ensure it runs without error
     try:
         engine.step_simulation()
