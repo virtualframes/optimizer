@@ -1,0 +1,6 @@
+- Use Pydantic v2 + `pydantic-settings` for config (.env committed to deploy hosts)
+- Keep CLI via `[project.scripts]` (PEP 621) merged by union
+- Systemd units hardened + `EnvironmentFile=/etc/jules/jules.env`
+- Stack: Neo4j (lineage) + Postgres/pgvector + Redis
+- VM/RDP integration + Multi-MCP (OpenAI/Anthropic/Google/local)
+- Ship smoke tests + CI hooks for entrypoints & health
