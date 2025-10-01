@@ -9,15 +9,7 @@ setup(
     author="Jules",
     packages=find_packages(),
     install_requires=[
-        "fastapi",
-        "uvicorn[standard]",
-        "pydantic",
-        "pyyaml",
-        "click",
-        "pytest",
-        "flake8",
-        "pybullet",
-        "networkx",
+        line.strip() for line in open("requirements.txt").readlines()
     ],
     entry_points={
         "console_scripts": [

@@ -16,6 +16,7 @@ def test_node_to_dict():
     assert node.to_dict() == {
         "node_id": "test_node",
         "position": (1, 2, 3),
+        "velocity": (0.0, 0.0, 0.0),
         "metadata": {},
     }
 
