@@ -9,6 +9,6 @@ __version__ = "0.1.0"
 
 from .node import Node
 from .engine import Engine
-from .auth_matrix import AuthMatrix
+from .auth_matrix import AuthMatrix, PermissionLevel
 
-__all__ = ["Node", "Engine", "AuthMatrix"]
+__all__ = ["Node", "Engine", "AuthMatrix", "PermissionLevel"]
