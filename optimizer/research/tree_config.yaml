@@ -1,0 +1,23 @@
+# What to include/exclude and how to hash.
+exclude_globs:
+  - ".git/**"
+  - ".venv/**"
+  - "venv/**"
+  - "__pycache__/**"
+  - "node_modules/**"
+  - "audit/**"
+  - "docs/citations/**"
+  - ".pytest_cache/**"
+  - ".mypy_cache/**"
+  - ".ruff_cache/**"
+
+# If true, hash all files up to hash_max_mb.
+hash_large_files: true
+hash_max_mb: 50
+
+# If true, store short text preview for small text files.
+store_preview: true
+preview_max_bytes: 512
+
+# Optional: path remap manifest (populate if you moved files between PRs)
+manifest_file: "optimizer/research/manifest.yaml"

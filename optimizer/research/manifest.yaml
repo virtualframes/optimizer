@@ -1,0 +1,6 @@
+# Optional path-remap examples. Fill in as you consolidate PRs.
+mappings:
+  # - from: "jules/core/agent.py"
+  #   to:   "optimizer/agentkits/jules_v1/agent.py"
+  # - from: "services/synapse_cortex/main.py"
+  #   to:   "optimizer/orchestrators/synapse_cortex/service.py"

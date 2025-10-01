@@ -1,0 +1,38 @@
+name: API Atlas (map+debug+self-heal)
+on:
+  schedule:
+    - cron: "45 14 * * *"   # 14:45 UTC daily
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  atlas:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - name: Install
+        run: pip install -e .[atlas,dev]
+      - name: Map
+        run: api-map
+      - name: Debug
+        run: api-debug
+      - name: Health (local-only)
+        env:
+          API_BASE_URL: "http://127.0.0.1:8080"
+        run: api-health || true
+      - name: Heal plan
+        run: api-heal
+      - name: Commit artifacts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/api/*
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(api-atlas): map, debug, health, heal plan"
+            git push
+          fi

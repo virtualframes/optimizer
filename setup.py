@@ -18,10 +18,21 @@ setup(
         "flake8",
         "pybullet",
         "networkx",
+        "pathspec>=0.12.1",
+        "requests>=2.32",
+        "beautifulsoup4>=4.12"
     ],
+    extras_require={
+        "atlas": ["PyYAML>=6.0.2", "pathspec>=0.12.1", "requests>=2.32", "beautifulsoup4>=4.12"],
+    },
     entry_points={
         "console_scripts": [
             "optimizer=optimizer.cli.main:cli",
+            "map-tree=optimizer.research.tree_mapper:main",
+            "api-map=optimizer.apiatlas.cli:map_main",
+            "api-health=optimizer.apiatlas.cli:health_main",
+            "api-heal=optimizer.apiatlas.cli:heal_main",
+            "api-debug=optimizer.apiatlas.cli:debug_main",
         ],
     },
     classifiers=[
