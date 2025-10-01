@@ -2,6 +2,10 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import List, Dict, Any
 
+# Ensure all necessary paths are in sys.path
+from optimizer_sentinel.diagnostics.import_debugger import recover_imports
+recover_imports()
+
 from optimizer.core.node import Node
 from optimizer.core.auth_matrix import AuthMatrix
 from optimizer.logging_config import setup_logging, get_logger

@@ -12,3 +12,6 @@ openai
 pymilvus
 pytest-asyncio
 temporalio
+prometheus-client
+PyGithub
+neo4j

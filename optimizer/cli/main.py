@@ -1,6 +1,10 @@
 import click
 import os
 
+# Ensure all necessary paths are in sys.path
+from optimizer_sentinel.diagnostics.import_debugger import recover_imports
+recover_imports()
+
 from optimizer.config.settings import load_config
 from optimizer.core.engine import Engine
 from optimizer.logging_config import setup_logging, get_logger
