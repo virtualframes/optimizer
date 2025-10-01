@@ -1,0 +1,49 @@
+name: Build SyzygyOS GCE Image
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'syzygy-os/**'
+
+env:
+  GCS_BUCKET: "syzygy-os-images-artifacts" # Replace with your GCS bucket name
+
+jobs:
+  build-and-upload:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # Required for GCP auth
+
+    steps:
+    - uses: actions/checkout@v4
+
+    # Install Nix and enable Flakes
+    - name: Install Nix
+      uses: cachix/install-nix-action@v27
+      with:
+        extra_nix_config: |
+          experimental-features = nix-command flakes
+
+    # Build the GCE image using the Flake output defined in 2.1
+    - name: Build GCE Image
+      run: |
+        nix build ./syzygy-os#packages.x86_64-linux.gce-image --print-out-paths -o result-image
+
+    # Authenticate to GCP (Requires GCP_SA_KEY secret)
+    - name: Authenticate to GCP
+      uses: google-github-actions/auth@v2
+      with:
+        credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+    - name: Set up Cloud SDK
+      uses: google-github-actions/setup-gcloud@v2
+
+    # Upload the resulting tar.gz artifact to GCS
+    - name: Upload to GCS
+      run: |
+        IMAGE_FILE=$(find result-image -name "*.tar.gz" -type f)
+        IMAGE_NAME="syzygyos-$(date +%Y%m%d)-${{ github.sha }}.tar.gz"
+        gsutil cp $IMAGE_FILE gs://${{ env.GCS_BUCKET }}/${IMAGE_NAME}
+        echo "GCS_IMAGE_PATH=gs://${{ env.GCS_BUCKET }}/${IMAGE_NAME}" >> $GITHUB_ENV
