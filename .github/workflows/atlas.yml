@@ -1,0 +1,38 @@
+name: Atlas CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9"]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v3
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .
+      - name: Entropy collapse
+        run: omega-inject
+      - name: Availability stress
+        run: omega-stress
+      - name: Render lineage + service graph
+        run: |
+          lineage-render
+          service-graph
+      - name: Commit Mission Ω artifacts
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add audit/* docs/AVAILABILITY.md docs/api/lineage.mmd docs/api/service_graph.mmd || true
+          if ! git diff --cached --quiet; then
+            git commit -m "docs(omega): entropy+availability+lineage artifacts"
+            git push || true
+          fi
