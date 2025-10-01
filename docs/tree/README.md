@@ -1,8 +1,8 @@
 # File Atlas
 
-- files: 264
-- total size: 1948.2 KB
-- total lines (text only): 64660
+- files: 282
+- total size: 2188.6 KB
+- total lines (text only): 66263
 
 Artifacts:
 - `docs/tree/TREE.md` — pretty tree

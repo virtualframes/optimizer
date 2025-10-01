@@ -85,9 +85,9 @@
     "lines": 153
   },
   "docs/api": {
-    "files": 1,
-    "bytes": 0,
-    "lines": 0
+    "files": 4,
+    "bytes": 4293,
+    "lines": 45
   },
   "docs": {
     "files": 1,
@@ -95,9 +95,9 @@
     "lines": 253
   },
   "docs/tree": {
-    "files": 1,
-    "bytes": 0,
-    "lines": 0
+    "files": 6,
+    "bytes": 231540,
+    "lines": 1253
   },
   "examples": {
     "files": 2,
@@ -105,9 +105,9 @@
     "lines": 131
   },
   "flaw_first_optimizer": {
-    "files": 23,
-    "bytes": 36254,
-    "lines": 926
+    "files": 25,
+    "bytes": 37482,
+    "lines": 972
   },
   "frontend/src/components": {
     "files": 2,
@@ -241,13 +241,13 @@
   },
   "psi_agent/alignment_monitor/benchmarking": {
     "files": 3,
-    "bytes": 5121,
-    "lines": 125
+    "bytes": 6086,
+    "lines": 156
   },
   "psi_agent/alignment_monitor/integration": {
     "files": 3,
-    "bytes": 3719,
-    "lines": 87
+    "bytes": 3925,
+    "lines": 95
   },
   "psi_agent/alignment_monitor/processing": {
     "files": 3,
@@ -265,19 +265,24 @@
     "lines": 135
   },
   "psi_agent/memory": {
-    "files": 3,
-    "bytes": 1621,
-    "lines": 49
+    "files": 5,
+    "bytes": 3570,
+    "lines": 106
   },
   "psi_agent/mutation": {
     "files": 3,
-    "bytes": 2287,
-    "lines": 55
+    "bytes": 1805,
+    "lines": 54
   },
   "psi_agent/orchestration": {
-    "files": 3,
-    "bytes": 1986,
-    "lines": 52
+    "files": 4,
+    "bytes": 4396,
+    "lines": 109
+  },
+  "psi_agent/scanners": {
+    "files": 4,
+    "bytes": 1087,
+    "lines": 40
   },
   "psi_agent/utils": {
     "files": 2,
@@ -440,8 +445,8 @@
     "lines": 31
   },
   "tests": {
-    "files": 13,
-    "bytes": 33589,
-    "lines": 930
+    "files": 14,
+    "bytes": 36568,
+    "lines": 997
   }
 }

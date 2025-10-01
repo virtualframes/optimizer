@@ -42,28 +42,38 @@
   - validator.py  _4 KB • 107 ln • python_
   - workflow.py  _1 KB • 46 ln • python_
     - .gitkeep  _0 KB • 0 ln • text_
+    - TREE.md  _0 KB • 18 ln • markdown_
+    - endpoints.jsonl  _2 KB • 12 ln • text_
+    - hidden.csv  _0 KB • 15 ln • text_
   - build_dependencies.md  _7 KB • 253 ln • markdown_
     - .gitkeep  _0 KB • 0 ln • text_
+    - README.md  _0 KB • 11 ln • markdown_
+    - TREE.md  _13 KB • 266 ln • markdown_
+    - dirs.json  _7 KB • 447 ln • json_
+    - files.jsonl  _166 KB • 264 ln • text_
+    - summary.csv  _38 KB • 265 ln • text_
   - README.md  _1 KB • 38 ln • markdown_
   - check_build_dependencies.py  _2 KB • 93 ln • python_
   - __init__.py  _0 KB • 0 ln • python_
   - agent_router.py  _1 KB • 49 ln • python_
   - airgap_overlay.py  _2 KB • 51 ln • python_
   - audittrailwriter.py  _2 KB • 61 ln • python_
+  - benchmark_alignment.py  _0 KB • 11 ln • python_
   - benchmark_runner.py  _0 KB • 3 ln • python_
   - benchmarks.py  _2 KB • 62 ln • python_
   - dev_ui.py  _2 KB • 63 ln • python_
   - doc_pipeline.py  _1 KB • 49 ln • python_
   - entropy_injector.py  _0 KB • 8 ln • python_
   - jules_agent.py  _1 KB • 37 ln • python_
+  - julesselfevolver.py  _2 KB • 69 ln • python_
   - legallabelingui.py  _2 KB • 61 ln • python_
   - mission_thread.py  _0 KB • 10 ln • python_
+  - mutate_prompt.py  _0 KB • 10 ln • python_
   - mutation_anchor.py  _0 KB • 11 ln • python_
   - mutation_suggester.py  _2 KB • 55 ln • python_
   - neo4j_mapper.py  _0 KB • 2 ln • python_
   - offlinemodelmirror.py  _2 KB • 65 ln • python_
   - pr_simulator.py  _2 KB • 61 ln • python_
-  - psi_kernel.py  _1 KB • 44 ln • python_
   - qdrant_indexer.py  _2 KB • 62 ln • python_
   - repo_fingerprint.py  _2 KB • 67 ln • python_
   - reroute_replay.py  _2 KB • 54 ln • python_
@@ -142,11 +152,11 @@
     - self_debugger.py  _0 KB • 24 ln • python_
     - __init__.py  _0 KB • 0 ln • python_
       - __init__.py  _0 KB • 0 ln • python_
-      - benchmark_exposer.py  _2 KB • 66 ln • python_
-      - flaw_detector.py  _2 KB • 59 ln • python_
+      - benchmark_exposer.py  _3 KB • 82 ln • python_
+      - flaw_detector.py  _2 KB • 74 ln • python_
       - __init__.py  _0 KB • 0 ln • python_
-      - auto_aligner.py  _2 KB • 54 ln • python_
-      - timeline_tracker.py  _1 KB • 33 ln • python_
+      - auto_aligner.py  _3 KB • 71 ln • python_
+      - timeline_tracker.py  _0 KB • 24 ln • python_
       - __init__.py  _0 KB • 0 ln • python_
       - prediction_parser.py  _1 KB • 52 ln • python_
       - synthesizer.py  _1 KB • 50 ln • python_
@@ -160,13 +170,20 @@
     - vm_daemon.py  _4 KB • 135 ln • python_
     - __init__.py  _0 KB • 0 ln • python_
     - cockroachdb_ledger.py  _0 KB • 24 ln • python_
+    - cockroachdbledger.py  _0 KB • 28 ln • python_
     - neo4j_anchor.py  _0 KB • 25 ln • python_
+    - neo4janchor.py  _0 KB • 29 ln • python_
     - __init__.py  _0 KB • 0 ln • python_
-    - fingerprint.py  _0 KB • 25 ln • python_
-    - mutation_engine.py  _1 KB • 30 ln • python_
+    - fingerprint.py  _0 KB • 13 ln • python_
+    - mutation_engine.py  _1 KB • 41 ln • python_
     - __init__.py  _0 KB • 0 ln • python_
     - pr_simulator.py  _1 KB • 30 ln • python_
-    - psi_kernel.py  _0 KB • 22 ln • python_
+    - psi_kernel.py  _2 KB • 67 ln • python_
+    - reroute_traceback.py  _0 KB • 12 ln • python_
+    - sourceaifutures.py  _0 KB • 10 ln • python_
+    - sourcearxiv.py  _0 KB • 10 ln • python_
+    - sourcehnreddit.py  _0 KB • 10 ln • python_
+    - sourcelwaf.py  _0 KB • 10 ln • python_
     - __init__.py  _0 KB • 0 ln • python_
     - logging.py  _0 KB • 25 ln • python_
 - pytest.ini  _0 KB • 2 ln • ini_
@@ -257,6 +274,7 @@
   - test_core.py  _1 KB • 51 ln • python_
   - test_cross_platform_validator.py  _3 KB • 80 ln • python_
   - test_jules_agent_suite.py  _4 KB • 114 ln • python_
+  - test_jules_self_evolver.py  _2 KB • 67 ln • python_
   - test_palantir_harvester.py  _0 KB • 28 ln • python_
   - test_self_healing.py  _0 KB • 24 ln • python_
   - test_semantic_search.py  _3 KB • 117 ln • python_
