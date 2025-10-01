@@ -11,3 +11,4 @@ httpx
 openai
 pymilvus
 pytest-asyncio
+temporalio
