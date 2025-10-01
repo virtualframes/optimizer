@@ -1,0 +1,48 @@
+{
+  "generated": 1759307885,
+  "edges": {
+    "optimizer.universal": [],
+    "optimizer.logging_config": [
+      "optimizer.config.settings"
+    ],
+    "optimizer.__init__": [],
+    "optimizer.api.main": [
+      "optimizer.core.auth_matrix",
+      "optimizer.core.node",
+      "optimizer.logging_config"
+    ],
+    "optimizer.api.__init__": [],
+    "optimizer.utils.build_helper": [],
+    "optimizer.utils.__init__": [],
+    "optimizer.flaws.memory_poisoner": [],
+    "optimizer.flaws.broken_imports": [],
+    "optimizer.flaws.buginjectionmatrix": [],
+    "optimizer.flaws.infiniteloopsimulator": [],
+    "optimizer.flaws.semanticdriftgenerator": [],
+    "optimizer.cli.main": [
+      "optimizer.config.settings",
+      "optimizer.core.engine",
+      "optimizer.logging_config"
+    ],
+    "optimizer.cli.__init__": [],
+    "optimizer.graphs.service_graph": [],
+    "optimizer.graphs.render": [],
+    "optimizer.graphs.code_graph": [],
+    "optimizer.graphs.__init__": [],
+    "optimizer.plugins.__init__": [],
+    "optimizer.plugins.graphs": [
+      "optimizer.universal"
+    ],
+    "optimizer.core.node": [],
+    "optimizer.core.auth_matrix": [
+      "optimizer.logging_config"
+    ],
+    "optimizer.core.engine": [
+      "optimizer.config.settings",
+      "optimizer.logging_config"
+    ],
+    "optimizer.core.__init__": [],
+    "optimizer.config.settings": []
+  },
+  "cycles": []
+}
