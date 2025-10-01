@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  optimizer-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: optimizer-api
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=false
+      - LOGGING__LEVEL=INFO
+      - LOGGING__FORMAT=json
+    volumes:
+      - ./logs:/app/logs
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+volumes:
+  logs:
