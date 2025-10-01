@@ -1,0 +1,65 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["*"]
+exclude = ["tests*", "frontend*", "k8s*", "infra*", "syzygy-os*", "docs*", "examples*"]
+
+[project]
+name = "optimizer"
+version = "0.1.0"
+description = "Augmented optimizer for virtual node and game-engine authentication matrix simulation."
+readme = "README.md"
+authors = [{ name = "Jules" }]
+license = "MIT"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+]
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "pydantic",
+    "pyyaml",
+    "click",
+    "pytest",
+    "flake8",
+    "pybullet",
+    "networkx",
+    "pathspec>=0.12.1",
+    "requests>=2.32",
+    "beautifulsoup4>=4.12",
+    "docker",
+]
+
+[project.optional-dependencies]
+atlas = ["PyYAML>=6.0.2", "pathspec>=0.12.1", "requests>=2.32", "beautifulsoup4>=4.12"]
+dev = ["httpx", "temporalio", "pytest-asyncio", "openai", "pymilvus"]
+neo4j = ["neo4j"]
+
+[project.scripts]
+# Core Agentic Scripts from prompt
+jules-run-agent        = "optimizer.cli.main:run"
+omega-inject           = "optimizer.resilience.entropy:main"
+omega-stress           = "optimizer.benchmark.availability_stress:main"
+jules-index-context    = "optimizer.contextengine.spacetimeindexer:main"
+jules-retrieve-context = "optimizer.contextengine.contextretriever:main"
+jules-auto-mutate      = "optimizer.selflearning.automutator:main"
+
+# Delta Pack Scripts from prompt
+jules-export-neo4j     = "optimizer.memory.neo4j_export:main"
+jules-service-overlay  = "optimizer.dev.servicerouteoverlay:main"
+jules-risk-scan        = "optimizer.analytics.risk_classifiers:main"
+jules-generate-dashboard = "optimizer.dev.dashboard_generator:main"
+
+# Original scripts from setup.py to ensure no functionality is lost
+optimizer              = "optimizer.cli.main:cli"
+map-tree               = "optimizer.research.tree_mapper:main"
+api-map                = "optimizer.apiatlas.cli:map_main"
+api-health             = "optimizer.apiatlas.cli:health_main"
+api-heal               = "optimizer.apiatlas.cli:heal_main"
+api-debug              = "optimizer.apiatlas.cli:debug_main"

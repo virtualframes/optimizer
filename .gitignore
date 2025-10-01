@@ -1,11 +1,42 @@
-# Generated files
-audit/risk_index.jsonl
-docs/RISK.md
-docs/api/service_graph_routes.mmd
-audit/availability.csv
-audit/entropy_injection.json
-docs/api/lineage.mmd
-docs/api/service_graph.mmd
-docs/api/retrieval_flow.mmd
-context_db.jsonl
-audit/mutations.jsonl
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.so
+.Python
+env/
+venv/
+pip-wheel-metadata/
+.installed.cfg
+*.egg-info/
+
+# Build artifacts
+build/
+dist/
+*.egg
+*.whl
+
+# Test artifacts
+.pytest_cache/
+.coverage
+htmlcov/
+nosetests.xml
+coverage.xml
+*.cover
+
+# Logs
+*.log
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# IDEs and editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store

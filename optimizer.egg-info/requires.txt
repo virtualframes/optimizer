@@ -10,6 +10,7 @@ networkx
 pathspec>=0.12.1
 requests>=2.32
 beautifulsoup4>=4.12
+docker
 
 [atlas]
 PyYAML>=6.0.2

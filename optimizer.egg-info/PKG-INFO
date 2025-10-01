@@ -3,9 +3,9 @@ Name: optimizer
 Version: 0.1.0
 Summary: Augmented optimizer for virtual node and game-engine authentication matrix simulation.
 Author: Jules
+License-Expression: MIT
 Classifier: Development Status :: 3 - Alpha
 Classifier: Intended Audience :: Developers
-Classifier: License :: OSI Approved :: MIT License
 Classifier: Programming Language :: Python :: 3
 Classifier: Programming Language :: Python :: 3.9
 Description-Content-Type: text/markdown
@@ -22,6 +22,7 @@ Requires-Dist: networkx
 Requires-Dist: pathspec>=0.12.1
 Requires-Dist: requests>=2.32
 Requires-Dist: beautifulsoup4>=4.12
+Requires-Dist: docker
 Provides-Extra: atlas
 Requires-Dist: PyYAML>=6.0.2; extra == "atlas"
 Requires-Dist: pathspec>=0.12.1; extra == "atlas"
@@ -35,14 +36,7 @@ Requires-Dist: openai; extra == "dev"
 Requires-Dist: pymilvus; extra == "dev"
 Provides-Extra: neo4j
 Requires-Dist: neo4j; extra == "neo4j"
-Dynamic: author
-Dynamic: classifier
-Dynamic: description
-Dynamic: description-content-type
 Dynamic: license-file
-Dynamic: provides-extra
-Dynamic: requires-dist
-Dynamic: summary
 
 # Optimizer
 
