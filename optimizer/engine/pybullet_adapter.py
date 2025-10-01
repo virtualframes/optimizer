@@ -1,6 +1,6 @@
 """PyBullet adapter for 3D physics simulation."""
 
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, Optional, Tuple
 import pybullet as p
 import pybullet_data
 import numpy as np

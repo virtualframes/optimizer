@@ -88,8 +88,10 @@ def simulate(nodes, steps, gui):
         for node in node_list[:5]:  # Show first 5 nodes
             table.add_row(
                 node.id[:8] + "...",
-                f"({node.position[0]:.2f}, {node.position[1]:.2f}, {node.position[2]:.2f})",
-                f"({node.velocity[0]:.2f}, {node.velocity[1]:.2f}, {node.velocity[2]:.2f})"
+                f"({node.position[0]:.2f}, "
+                f"{node.position[1]:.2f}, {node.position[2]:.2f})",
+                f"({node.velocity[0]:.2f}, "
+                f"{node.velocity[1]:.2f}, {node.velocity[2]:.2f})"
             )
         
         console.print(table)

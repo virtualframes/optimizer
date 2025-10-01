@@ -1,6 +1,6 @@
 """Core Node class for simulating VR nodes."""
 
-from typing import Dict, List, Optional, Any
+from typing import Dict, List, Any
 from dataclasses import dataclass, field
 from uuid import uuid4
 import numpy as np

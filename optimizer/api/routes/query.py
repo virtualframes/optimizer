@@ -1,8 +1,8 @@
 """Query endpoints for retrieving node and system data."""
 
 from fastapi import APIRouter, HTTPException, Query
-from pydantic import BaseModel, Field
-from typing import List, Dict, Any, Optional
+from pydantic import BaseModel
+from typing import List, Optional
 from optimizer.api.routes.ingest import nodes_storage, NodeResponse
 from optimizer.config.logging_config import get_logger
 
@@ -34,7 +34,7 @@ async def list_nodes(
     Returns:
         List of node data
     """
-    nodes = list(nodes_storage.values())[skip : skip + limit]
+    nodes = list(nodes_storage.values())[skip:skip + limit]
     logger.info("Listed nodes", count=len(nodes), skip=skip, limit=limit)
     
     return [NodeResponse(**node.to_dict()) for node in nodes]
