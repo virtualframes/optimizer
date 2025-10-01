@@ -39,6 +39,9 @@
 - compose.yml  _0 KB • 38 ln • yaml_
   - config.example.yaml  _1 KB • 37 ln • yaml_
   - __init__.py  _0 KB • 0 ln • python_
+    - __init__.cpython-312.pyc  _0 KB • 3 ln • text_
+    - validator.cpython-312.pyc  _7 KB • 54 ln • text_
+    - workflow.cpython-312.pyc  _2 KB • 35 ln • text_
   - validator.py  _4 KB • 107 ln • python_
   - workflow.py  _1 KB • 46 ln • python_
     - .gitkeep  _0 KB • 0 ln • text_
@@ -48,13 +51,23 @@
   - build_dependencies.md  _7 KB • 253 ln • markdown_
     - .gitkeep  _0 KB • 0 ln • text_
     - README.md  _0 KB • 11 ln • markdown_
-    - TREE.md  _13 KB • 266 ln • markdown_
-    - dirs.json  _7 KB • 447 ln • json_
-    - files.jsonl  _166 KB • 264 ln • text_
-    - summary.csv  _38 KB • 265 ln • text_
+    - TREE.md  _14 KB • 284 ln • markdown_
+    - dirs.json  _7 KB • 452 ln • json_
+    - files.jsonl  _178 KB • 282 ln • text_
+    - summary.csv  _41 KB • 283 ln • text_
   - README.md  _1 KB • 38 ln • markdown_
   - check_build_dependencies.py  _2 KB • 93 ln • python_
   - __init__.py  _0 KB • 0 ln • python_
+    - __init__.cpython-312.pyc  _0 KB • 3 ln • text_
+    - benchmark_alignment.cpython-312.pyc  _0 KB • 11 ln • text_
+    - benchmark_runner.cpython-312.pyc  _0 KB • 5 ln • text_
+    - entropy_injector.cpython-312.pyc  _0 KB • 7 ln • text_
+    - jules_agent.cpython-312.pyc  _2 KB • 14 ln • text_
+    - julesselfevolver.cpython-312.pyc  _2 KB • 20 ln • text_
+    - mutate_prompt.cpython-312.pyc  _0 KB • 13 ln • text_
+    - mutation_anchor.cpython-312.pyc  _0 KB • 4 ln • text_
+    - neo4j_mapper.cpython-312.pyc  _0 KB • 5 ln • text_
+    - reroute_traceback.cpython-312.pyc  _0 KB • 7 ln • text_
   - agent_router.py  _1 KB • 49 ln • python_
   - airgap_overlay.py  _2 KB • 51 ln • python_
   - audittrailwriter.py  _2 KB • 61 ln • python_
@@ -94,8 +107,22 @@
     - synapse-cortex-worker.yaml  _1 KB • 61 ln • yaml_
   - SELF_CYCLE_001.json  _1 KB • 19 ln • json_
   - memorytags.md  _0 KB • 24 ln • markdown_
+  - PKG-INFO  _4 KB • 156 ln • text_
+  - SOURCES.txt  _4 KB • 121 ln • text_
+  - dependency_links.txt  _0 KB • 1 ln • text_
+  - entry_points.txt  _0 KB • 10 ln • text_
+  - requires.txt  _0 KB • 28 ln • text_
+  - top_level.txt  _0 KB • 5 ln • text_
+- optimizer.log  _0 KB • 0 ln • text_
   - __init__.py  _0 KB • 0 ln • python_
+    - __init__.cpython-311.pyc  _0 KB • 3 ln • text_
+    - __init__.cpython-312.pyc  _0 KB • 3 ln • text_
+    - logging_config.cpython-312.pyc  _1 KB • 13 ln • text_
+      - risk_classifiers.cpython-312.pyc  _5 KB • 60 ln • text_
+    - risk_classifiers.py  _3 KB • 118 ln • python_
     - __init__.py  _0 KB • 0 ln • python_
+      - __init__.cpython-312.pyc  _0 KB • 3 ln • text_
+      - main.cpython-312.pyc  _4 KB • 45 ln • text_
     - main.py  _2 KB • 99 ln • python_
     - cli.py  _0 KB • 9 ln • python_
     - config.yaml  _0 KB • 40 ln • yaml_
@@ -104,29 +131,47 @@
     - health.py  _2 KB • 54 ln • python_
     - scanner.py  _8 KB • 217 ln • python_
     - __init__.py  _0 KB • 0 ln • python_
+      - __init__.cpython-312.pyc  _0 KB • 3 ln • text_
+      - main.cpython-312.pyc  _1 KB • 32 ln • text_
     - main.py  _1 KB • 48 ln • python_
+      - settings.cpython-312.pyc  _2 KB • 33 ln • text_
     - settings.py  _1 KB • 48 ln • python_
     - __init__.py  _0 KB • 0 ln • python_
+      - __init__.cpython-312.pyc  _0 KB • 3 ln • text_
+      - auth_matrix.cpython-312.pyc  _2 KB • 43 ln • text_
+      - engine.cpython-312.pyc  _2 KB • 34 ln • text_
+      - node.cpython-312.pyc  _1 KB • 35 ln • text_
     - auth_matrix.py  _1 KB • 49 ln • python_
     - engine.py  _1 KB • 52 ln • python_
     - node.py  _0 KB • 33 ln • python_
+    - service_route_overlay.py  _1 KB • 57 ln • python_
     - broken_imports.py  _0 KB • 5 ln • python_
     - buginjectionmatrix.py  _1 KB • 47 ln • python_
     - infiniteloopsimulator.py  _1 KB • 30 ln • python_
     - memory_poisoner.py  _1 KB • 38 ln • python_
     - semanticdriftgenerator.py  _1 KB • 39 ln • python_
   - logging_config.py  _0 KB • 25 ln • python_
+    - neo4j_export.py  _3 KB • 102 ln • python_
+      - tree_mapper.cpython-311.pyc  _19 KB • 194 ln • text_
     - manifest.yaml  _0 KB • 6 ln • yaml_
     - tree_config.yaml  _0 KB • 23 ln • yaml_
     - tree_mapper.py  _9 KB • 260 ln • python_
     - __init__.py  _0 KB • 1 ln • python_
+      - __init__.cpython-312.pyc  _0 KB • 3 ln • text_
+      - build_helper.cpython-312.pyc  _9 KB • 119 ln • text_
     - build_helper.py  _7 KB • 265 ln • python_
   - __init__.py  _0 KB • 0 ln • python_
+    - __init__.cpython-312.pyc  _0 KB • 3 ln • text_
     - __init__.py  _0 KB • 0 ln • python_
+      - __init__.cpython-312.pyc  _0 KB • 3 ln • text_
+      - risk_model.cpython-312.pyc  _0 KB • 12 ln • text_
     - anomalymodeladapter.py  _0 KB • 9 ln • python_
     - dbtraceadapter.py  _0 KB • 0 ln • python_
     - risk_model.py  _0 KB • 11 ln • python_
     - __init__.py  _0 KB • 0 ln • python_
+      - __init__.cpython-312.pyc  _0 KB • 3 ln • text_
+      - patch_engine.cpython-312.pyc  _0 KB • 9 ln • text_
+      - predictive_debug_engine.cpython-312.pyc  _2 KB • 28 ln • text_
     - patch_engine.py  _0 KB • 11 ln • python_
     - predictive_debug_engine.py  _1 KB • 45 ln • python_
     - predictive_debugger_legacy.py  _0 KB • 13 ln • python_
@@ -134,9 +179,13 @@
     - cli.py  _0 KB • 0 ln • python_
   - main.py  _0 KB • 0 ln • python_
     - __init__.py  _0 KB • 0 ln • python_
+      - __init__.cpython-312.pyc  _0 KB • 3 ln • text_
+      - neo4j_anchor.cpython-312.pyc  _2 KB • 41 ln • text_
     - forecast_cache.py  _0 KB • 0 ln • python_
     - neo4j_anchor.py  _1 KB • 41 ln • python_
     - __init__.py  _0 KB • 0 ln • python_
+      - __init__.cpython-312.pyc  _0 KB • 3 ln • text_
+      - schemamigrationguard.cpython-312.pyc  _1 KB • 17 ln • text_
     - forecastandpatch.py  _0 KB • 18 ln • python_
     - schemamigrationguard.py  _0 KB • 25 ln • python_
     - Dockerfile  _0 KB • 23 ln • text_
@@ -208,6 +257,12 @@
     - gemini_adapter.py  _0 KB • 5 ln • python_
     - grok_adapter.py  _0 KB • 4 ln • python_
     - openai_adapter.py  _0 KB • 4 ln • python_
+      - anti_slop_benchmark.cpython-312.pyc  _2 KB • 35 ln • text_
+      - consensus_engine.cpython-312.pyc  _1 KB • 12 ln • text_
+      - jules.cpython-312.pyc  _5 KB • 59 ln • text_
+      - patch_success_predictor.cpython-312.pyc  _2 KB • 44 ln • text_
+      - self_evolving_memory.cpython-312.pyc  _4 KB • 62 ln • text_
+      - symbolic_consistency_verifier.cpython-312.pyc  _3 KB • 39 ln • text_
     - anti_slop_benchmark.py  _2 KB • 56 ln • python_
     - consensus_engine.py  _0 KB • 15 ln • python_
     - cortex.py  _0 KB • 11 ln • python_
@@ -222,6 +277,7 @@
     - mobile_api.py  _0 KB • 10 ln • python_
     - web_api.py  _0 KB • 11 ln • python_
   - main.py  _0 KB • 9 ln • python_
+      - neo4j_anchor.cpython-312.pyc  _4 KB • 54 ln • text_
     - audit_logger.py  _0 KB • 7 ln • python_
     - memory_cache.py  _0 KB • 19 ln • python_
     - neo4j_anchor.py  _2 KB • 71 ln • python_
@@ -233,39 +289,62 @@
     - selfhealworkflow.py  _0 KB • 16 ln • python_
     - validation_workflow.py  _0 KB • 9 ln • python_
     - Dockerfile  _0 KB • 15 ln • text_
+        - palantir_ingestion.cpython-312.pyc  _0 KB • 10 ln • text_
       - palantir_ingestion.py  _0 KB • 12 ln • python_
     - requirements.txt  _0 KB • 1 ln • text_
     - worker.py  _0 KB • 23 ln • python_
+        - palantir_feature_harvester_workflow.cpython-312.pyc  _1 KB • 19 ln • text_
       - palantir_feature_harvester_workflow.py  _0 KB • 15 ln • python_
   - requirements.txt  _0 KB • 5 ln • text_
     - Dockerfile  _0 KB • 15 ln • text_
+        - bug_bounty_ingestion.cpython-312.pyc  _0 KB • 10 ln • text_
       - bug_bounty_ingestion.py  _0 KB • 12 ln • python_
     - requirements.txt  _0 KB • 1 ln • text_
     - worker.py  _0 KB • 21 ln • python_
+        - self_healing_workflow.cpython-312.pyc  _1 KB • 19 ln • text_
       - self_healing_workflow.py  _0 KB • 15 ln • python_
     - main.py  _4 KB • 138 ln • python_
+      - main.cpython-312.pyc  _5 KB • 58 ln • text_
     - main.py  _3 KB • 125 ln • python_
       - embedding_activities.py  _7 KB • 221 ln • python_
     - worker.py  _1 KB • 48 ln • python_
       - semantic_search_workflow.py  _3 KB • 103 ln • python_
       - __init__.py  _0 KB • 4 ln • python_
+        - __init__.cpython-312.pyc  _0 KB • 4 ln • text_
+        - prompt.cpython-312.pyc  _0 KB • 10 ln • text_
       - embedding_activities.py  _6 KB • 201 ln • python_
       - policy_activities.py  _1 KB • 42 ln • python_
       - prompt.py  _0 KB • 14 ln • python_
       - issue_to_pr.py  _2 KB • 75 ln • python_
       - semantic-search.ts  _2 KB • 66 ln • typescript_
     - Dockerfile  _0 KB • 15 ln • text_
+        - penetration_testing.cpython-312.pyc  _0 KB • 10 ln • text_
       - penetration_testing.py  _0 KB • 12 ln • python_
     - requirements.txt  _0 KB • 1 ln • text_
     - worker.py  _0 KB • 21 ln • python_
+        - xbow_validation_workflow.cpython-312.pyc  _1 KB • 20 ln • text_
       - xbow_validation_workflow.py  _0 KB • 16 ln • python_
-- setup.py  _1 KB • 45 ln • python_
+- setup.py  _1 KB • 50 ln • python_
   - flake.nix  _1 KB • 38 ln • text_
       - configuration.nix  _1 KB • 58 ln • text_
       - home.nix  _0 KB • 30 ln • text_
   - README.md  _1 KB • 30 ln • markdown_
   - requirements.txt  _0 KB • 2 ln • text_
   - simulator.py  _2 KB • 65 ln • python_
+    - test_api.cpython-312-pytest-8.4.2.pyc  _9 KB • 65 ln • text_
+    - test_build_helper.cpython-312-pytest-8.4.2.pyc  _24 KB • 163 ln • text_
+    - test_cli.cpython-312-pytest-8.4.2.pyc  _4 KB • 63 ln • text_
+    - test_core.cpython-312-pytest-8.4.2.pyc  _7 KB • 47 ln • text_
+    - test_cross_platform_validator.cpython-312-pytest-8.4.2.pyc  _8 KB • 72 ln • text_
+    - test_jules_agent_suite.cpython-312-pytest-8.4.2.pyc  _8 KB • 53 ln • text_
+    - test_jules_self_evolver.cpython-312-pytest-8.4.2.pyc  _3 KB • 41 ln • text_
+    - test_palantir_harvester.cpython-312-pytest-8.4.2.pyc  _2 KB • 35 ln • text_
+    - test_risk_scan.cpython-312-pytest-8.4.2.pyc  _2 KB • 27 ln • text_
+    - test_self_healing.cpython-312-pytest-8.4.2.pyc  _2 KB • 33 ln • text_
+    - test_semantic_search.cpython-312-pytest-8.4.2.pyc  _12 KB • 110 ln • text_
+    - test_xbow_validator.cpython-312-pytest-8.4.2.pyc  _2 KB • 45 ln • text_
+      - test_schemamigrationguard.cpython-312-pytest-8.4.2.pyc  _2 KB • 20 ln • text_
+        - test_predictive_debug_engine.cpython-312-pytest-8.4.2.pyc  _3 KB • 22 ln • text_
       - test_predictive_debug_engine.py  _2 KB • 53 ln • python_
     - test_schemamigrationguard.py  _0 KB • 31 ln • python_
   - test_api.py  _1 KB • 70 ln • python_
@@ -276,6 +355,7 @@
   - test_jules_agent_suite.py  _4 KB • 114 ln • python_
   - test_jules_self_evolver.py  _2 KB • 67 ln • python_
   - test_palantir_harvester.py  _0 KB • 28 ln • python_
+  - test_risk_scan.py  _0 KB • 4 ln • python_
   - test_self_healing.py  _0 KB • 24 ln • python_
   - test_semantic_search.py  _3 KB • 117 ln • python_
   - test_xbow_validator.py  _1 KB • 32 ln • python_

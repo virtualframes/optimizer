@@ -1,8 +1,8 @@
 {
   ".": {
-    "files": 9,
-    "bytes": 8759,
-    "lines": 297
+    "files": 10,
+    "bytes": 9087,
+    "lines": 302
   },
   "agentic_orchestration/agents": {
     "files": 3,
@@ -84,6 +84,11 @@
     "bytes": 6274,
     "lines": 153
   },
+  "cross_platform_validator/__pycache__": {
+    "files": 3,
+    "bytes": 10447,
+    "lines": 92
+  },
   "docs/api": {
     "files": 4,
     "bytes": 4293,
@@ -96,8 +101,8 @@
   },
   "docs/tree": {
     "files": 6,
-    "bytes": 231540,
-    "lines": 1253
+    "bytes": 247628,
+    "lines": 1312
   },
   "examples": {
     "files": 2,
@@ -108,6 +113,11 @@
     "files": 25,
     "bytes": 37482,
     "lines": 972
+  },
+  "flaw_first_optimizer/__pycache__": {
+    "files": 10,
+    "bytes": 7892,
+    "lines": 89
   },
   "frontend/src/components": {
     "files": 2,
@@ -144,10 +154,30 @@
     "bytes": 595,
     "lines": 25
   },
+  "optimizer/__pycache__": {
+    "files": 3,
+    "bytes": 1677,
+    "lines": 19
+  },
+  "optimizer/analytics/__pycache__": {
+    "files": 1,
+    "bytes": 5713,
+    "lines": 60
+  },
+  "optimizer/analytics": {
+    "files": 1,
+    "bytes": 3271,
+    "lines": 118
+  },
   "optimizer/api": {
     "files": 2,
     "bytes": 2646,
     "lines": 99
+  },
+  "optimizer/api/__pycache__": {
+    "files": 2,
+    "bytes": 4673,
+    "lines": 48
   },
   "optimizer/apiatlas": {
     "files": 6,
@@ -159,6 +189,16 @@
     "bytes": 1217,
     "lines": 48
   },
+  "optimizer/cli/__pycache__": {
+    "files": 2,
+    "bytes": 2119,
+    "lines": 35
+  },
+  "optimizer/config/__pycache__": {
+    "files": 1,
+    "bytes": 2363,
+    "lines": 33
+  },
   "optimizer/config": {
     "files": 1,
     "bytes": 1175,
@@ -169,10 +209,30 @@
     "bytes": 4030,
     "lines": 134
   },
+  "optimizer/core/__pycache__": {
+    "files": 4,
+    "bytes": 6981,
+    "lines": 115
+  },
+  "optimizer/dev": {
+    "files": 1,
+    "bytes": 1718,
+    "lines": 57
+  },
   "optimizer/flaws": {
     "files": 5,
     "bytes": 6591,
     "lines": 159
+  },
+  "optimizer/memory": {
+    "files": 1,
+    "bytes": 3152,
+    "lines": 102
+  },
+  "optimizer/research/__pycache__": {
+    "files": 1,
+    "bytes": 20081,
+    "lines": 194
   },
   "optimizer/research": {
     "files": 3,
@@ -184,20 +244,45 @@
     "bytes": 8037,
     "lines": 266
   },
+  "optimizer/utils/__pycache__": {
+    "files": 2,
+    "bytes": 9745,
+    "lines": 122
+  },
+  "optimizer.egg-info": {
+    "files": 6,
+    "bytes": 9922,
+    "lines": 321
+  },
   "optimizer_sentinel": {
     "files": 2,
     "bytes": 0,
     "lines": 0
+  },
+  "optimizer_sentinel/__pycache__": {
+    "files": 1,
+    "bytes": 132,
+    "lines": 3
   },
   "optimizer_sentinel/adapters": {
     "files": 4,
     "bytes": 684,
     "lines": 20
   },
+  "optimizer_sentinel/adapters/__pycache__": {
+    "files": 2,
+    "bytes": 771,
+    "lines": 15
+  },
   "optimizer_sentinel/agents": {
     "files": 4,
     "bytes": 2676,
     "lines": 69
+  },
+  "optimizer_sentinel/agents/__pycache__": {
+    "files": 3,
+    "bytes": 3318,
+    "lines": 40
   },
   "optimizer_sentinel/interfaces": {
     "files": 2,
@@ -209,10 +294,20 @@
     "bytes": 1185,
     "lines": 41
   },
+  "optimizer_sentinel/storage/__pycache__": {
+    "files": 2,
+    "bytes": 2540,
+    "lines": 44
+  },
   "optimizer_sentinel/workflows": {
     "files": 3,
     "bytes": 1473,
     "lines": 43
+  },
+  "optimizer_sentinel/workflows/__pycache__": {
+    "files": 2,
+    "bytes": 1530,
+    "lines": 20
   },
   "physixiology_api/gateway": {
     "files": 3,
@@ -299,6 +394,11 @@
     "bytes": 1137,
     "lines": 27
   },
+  "sentinel_core/agents/__pycache__": {
+    "files": 6,
+    "bytes": 20630,
+    "lines": 251
+  },
   "sentinel_core/agents": {
     "files": 9,
     "bytes": 16632,
@@ -319,6 +419,11 @@
     "bytes": 193,
     "lines": 9
   },
+  "sentinel_core/storage/__pycache__": {
+    "files": 1,
+    "bytes": 4636,
+    "lines": 54
+  },
   "sentinel_core/storage": {
     "files": 3,
     "bytes": 3814,
@@ -334,10 +439,20 @@
     "bytes": 950,
     "lines": 39
   },
+  "services/palantir_harvester/activities/__pycache__": {
+    "files": 1,
+    "bytes": 648,
+    "lines": 10
+  },
   "services/palantir_harvester/activities": {
     "files": 1,
     "bytes": 392,
     "lines": 12
+  },
+  "services/palantir_harvester/workflows/__pycache__": {
+    "files": 1,
+    "bytes": 1177,
+    "lines": 19
   },
   "services/palantir_harvester/workflows": {
     "files": 1,
@@ -354,10 +469,20 @@
     "bytes": 893,
     "lines": 37
   },
+  "services/self_healing/activities/__pycache__": {
+    "files": 1,
+    "bytes": 670,
+    "lines": 10
+  },
   "services/self_healing/activities": {
     "files": 1,
     "bytes": 409,
     "lines": 12
+  },
+  "services/self_healing/workflows/__pycache__": {
+    "files": 1,
+    "bytes": 1133,
+    "lines": 19
   },
   "services/self_healing/workflows": {
     "files": 1,
@@ -368,6 +493,11 @@
     "files": 1,
     "bytes": 4402,
     "lines": 138
+  },
+  "services/semantic_search_api/__pycache__": {
+    "files": 1,
+    "bytes": 5426,
+    "lines": 58
   },
   "services/semantic_search_api": {
     "files": 1,
@@ -394,6 +524,11 @@
     "bytes": 9015,
     "lines": 261
   },
+  "services/synapse_cortex/activities/__pycache__": {
+    "files": 2,
+    "bytes": 1085,
+    "lines": 14
+  },
   "services/synapse_cortex/workflows": {
     "files": 2,
     "bytes": 5317,
@@ -404,10 +539,20 @@
     "bytes": 909,
     "lines": 37
   },
+  "services/xbow_validator/activities/__pycache__": {
+    "files": 1,
+    "bytes": 749,
+    "lines": 10
+  },
   "services/xbow_validator/activities": {
     "files": 1,
     "bytes": 457,
     "lines": 12
+  },
+  "services/xbow_validator/workflows/__pycache__": {
+    "files": 1,
+    "bytes": 1183,
+    "lines": 20
   },
   "services/xbow_validator/workflows": {
     "files": 1,
@@ -434,6 +579,21 @@
     "bytes": 3533,
     "lines": 97
   },
+  "tests/__pycache__": {
+    "files": 12,
+    "bytes": 92323,
+    "lines": 754
+  },
+  "tests/optimizer_sentinel/__pycache__": {
+    "files": 1,
+    "bytes": 2179,
+    "lines": 20
+  },
+  "tests/optimizer_sentinel/agents/__pycache__": {
+    "files": 1,
+    "bytes": 3481,
+    "lines": 22
+  },
   "tests/optimizer_sentinel/agents": {
     "files": 1,
     "bytes": 2143,
@@ -445,8 +605,8 @@
     "lines": 31
   },
   "tests": {
-    "files": 14,
-    "bytes": 36568,
-    "lines": 997
+    "files": 15,
+    "bytes": 36785,
+    "lines": 1001
   }
 }
