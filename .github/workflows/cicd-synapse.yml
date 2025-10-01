@@ -1,0 +1,83 @@
+name: CI/CD Syzygy Synapse (GitOps)
+
+on: [push]
+
+env:
+  REGISTRY: ghcr.io # Using GitHub Container Registry
+  KUSTOMIZE_OVERLAY: k8s/overlays/production
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    strategy:
+      matrix:
+        include:
+          - dockerfile: Dockerfile.nodejs
+            image_name: synapse-nodejs
+          - dockerfile: Dockerfile.python
+            image_name: synapse-python
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Log in to GHCR
+      uses: docker/login-action@v3
+      with:
+        registry: ${{ env.REGISTRY }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        file: ${{ matrix.dockerfile }}
+        push: true
+        tags: ${{ env.REGISTRY }}/${{ github.repository }}/${{ matrix.image_name }}:${{ github.sha }}
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build-and-push
+    steps:
+    - uses: actions/checkout@v4
+
+    # Configure Kubernetes Access (Assumes KUBECONFIG stored in Secrets)
+    - name: Set up Kubeconfig
+      uses: azure/k8s-set-context@v4
+      with:
+        kubeconfig: ${{ secrets.KUBECONFIG }}
+
+    - name: Setup Kustomize
+      uses: kubernetes-sigs/kustomize-action@v1
+
+    # Update image tags in the overlay using the commit SHA
+    - name: Update image tags and deploy
+      run: |
+        cd ${{ env.KUSTOMIZE_OVERLAY }}
+
+        kustomize edit set image synapse-nodejs=${{ env.REGISTRY }}/${{ github.repository }}/synapse-nodejs:${{ github.sha }}
+        kustomize edit set image synapse-python=${{ env.REGISTRY }}/${{ github.repository }}/synapse-python:${{ github.sha }}
+
+        # Apply the configuration
+        kustomize build . | kubectl apply -f -
+
+    - name: Verify deployment
+      run: |
+        echo "Verifying deployment..."
+        sleep 15 # Wait for the Kubernetes control plane to apply the changes
+
+        # Get the image of the deployed CronJob
+        DEPLOYED_IMAGE=$(kubectl get cronjob intel-harvester -n synapse-system -o jsonpath='{.spec.jobTemplate.spec.template.spec.containers[0].image}')
+        EXPECTED_IMAGE="${{ env.REGISTRY }}/${{ github.repository }}/synapse-python:${{ github.sha }}"
+
+        echo "Expected image: $EXPECTED_IMAGE"
+        echo "Deployed image: $DEPLOYED_IMAGE"
+
+        if [ "$DEPLOYED_IMAGE" == "$EXPECTED_IMAGE" ]; then
+          echo "✅ Success: CronJob image updated correctly."
+        else
+          echo "❌ Error: Deployed image does not match expected image."
+          exit 1
+        fi

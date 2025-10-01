@@ -14,29 +14,30 @@ class APISettings(BaseModel):
 class LoggingSettings(BaseModel):
     level: str = "INFO"
     format: str = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-    file: Optional[str] = "optimizer.log"
+    file: Optional[str] = "intel_harvester.log"
 
 class Settings(BaseModel):
     simulation: SimulationSettings
     api: APISettings
     logging: LoggingSettings
 
-def load_config(path: str = "config.yml") -> Settings:
-    """
-    Loads configuration from a YAML file.
+# A default settings object to be used when no config file is specified.
+settings = Settings(
+    simulation=SimulationSettings(),
+    api=APISettings(),
+    logging=LoggingSettings(),
+)
 
-    If the file is not found, it returns a default Settings object.
-    This is useful for environments like testing where a config file may not be present.
+def load_config_into_global_settings(path: str):
     """
+    Loads configuration from a YAML file and updates the global settings object.
+    Raises FileNotFoundError if the file cannot be found.
+    """
+    global settings
     try:
         with open(path, "r") as f:
             config_data = yaml.safe_load(f)
-        return Settings(**config_data)
+        settings = Settings(**config_data)
     except FileNotFoundError:
-        return Settings(
-            simulation=SimulationSettings(),
-            api=APISettings(),
-            logging=LoggingSettings(),
-        )
-
-settings = load_config()
+        # Re-raise the exception to be handled by the caller
+        raise

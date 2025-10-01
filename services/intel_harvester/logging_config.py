@@ -1,6 +1,6 @@
 import logging
 import sys
-from optimizer.config.settings import settings
+from intel_harvester.config.settings import settings
 
 def setup_logging():
     """

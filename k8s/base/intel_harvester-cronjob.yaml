@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: intel-harvester
+spec:
+  schedule: "0 2 * * *" # Run daily at 2 AM UTC
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: intel-harvester
+            image: synapse-python # This will be updated by the CI/CD pipeline
+            command:
+              - "intel_harvester"
+              - "--config-path"
+              - "/app/services/intel_harvester/config/production.yml" # Example path
+          restartPolicy: OnFailure

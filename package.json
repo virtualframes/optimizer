@@ -1,0 +1,6 @@
+{
+  "name": "synapse-services",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Placeholder for future Node.js services in the Syzygy Synapse project."
+}
