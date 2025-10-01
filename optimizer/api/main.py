@@ -97,3 +97,120 @@ def query_auth_matrix():
 @app.get("/", summary="Health check")
 def health_check():
     return {"status": "ok"}
+
+
+# --- Jules Mission Ω Open Protocol Manifest Endpoints ---
+
+# Mock in-memory database for more realistic scaffolding
+mock_vault = {
+    "fingerprints": {},
+    "system_status": "nominal",
+    "reroute_depth": 3,
+    "context_db": {
+        "ctx_001": "Jules is a recursive, self-evolving AI agent.",
+        "ctx_002": "The Flaw-First Optimization Engine prioritizes resilience.",
+    },
+    "lineage_graph": {
+        "mut_001": {"parent": "initial_commit", "description": "Initial scaffolding"},
+        "mut_002": {"parent": "mut_001", "description": "Added API endpoints"},
+    },
+    "agent_registry": ["Jules", "Claude", "Gemini"]
+}
+
+
+class FingerprintModel(BaseModel):
+    mutation_id: str
+    fingerprint: str
+    description: str
+
+class EntropyInjectModel(BaseModel):
+    target_module: str
+    collapse_level: float
+
+class QuorumValidateModel(BaseModel):
+    validators: List[str]
+    threshold: int
+
+class ContextAugmentModel(BaseModel):
+    prompt: str
+    context_ids: List[str]
+
+class AgentDispatchModel(BaseModel):
+    agent_role: str
+    task_description: str
+
+
+@app.post("/fingerprint", summary="Logs mutation fingerprint")
+def log_fingerprint(fingerprint: FingerprintModel):
+    """Logs a mutation fingerprint to the system's mock vault."""
+    logger.info(f"Received fingerprint for mutation {fingerprint.mutation_id}")
+    mock_vault["fingerprints"][fingerprint.mutation_id] = {
+        "fingerprint": fingerprint.fingerprint,
+        "description": fingerprint.description,
+        "timestamp": "2025-10-01T04:00:00Z"
+    }
+    return {"message": "Fingerprint logged successfully", "data": mock_vault["fingerprints"][fingerprint.mutation_id]}
+
+@app.post("/entropy/inject", summary="Simulates collapse and reroute")
+def inject_entropy(entropy: EntropyInjectModel):
+    """Injects entropy to simulate a system collapse and test rerouting."""
+    logger.info(f"Injecting entropy into {entropy.target_module} at level {entropy.collapse_level}")
+    mock_vault["system_status"] = f"degraded (entropy level: {entropy.collapse_level} in {entropy.target_module})"
+    return {"message": "Entropy injection successful", "new_status": mock_vault["system_status"]}
+
+@app.post("/quorum/validate", summary="Enforces validator threshold")
+def validate_quorum(quorum: QuorumValidateModel):
+    """Validates a proposed action against a quorum of validators."""
+    is_valid = len(quorum.validators) >= quorum.threshold
+    logger.info(f"Validating action with {len(quorum.validators)} validators and threshold {quorum.threshold}. Result: {is_valid}")
+    if not is_valid:
+        raise HTTPException(status_code=400, detail=f"Quorum not met. Required: {quorum.threshold}, Provided: {len(quorum.validators)}")
+    return {"message": "Quorum validation successful", "validated": is_valid}
+
+@app.get("/reroute/depth", summary="Returns fallback depth")
+def get_reroute_depth():
+    """Returns the current fallback depth of the system."""
+    logger.info(f"Querying reroute depth. Current value: {mock_vault['reroute_depth']}")
+    return {"reroute_depth": mock_vault["reroute_depth"]}
+
+@app.post("/context/augment", summary="Injects knowledge into prompt")
+def augment_context(context: ContextAugmentModel):
+    """Augments a given prompt with knowledge from the context engine."""
+    logger.info(f"Augmenting prompt with context IDs: {context.context_ids}")
+    retrieved_contexts = [mock_vault["context_db"].get(cid, "Context not found.") for cid in context.context_ids]
+    context_str = "\\n".join(f"- {ctx}" for ctx in retrieved_contexts)
+    augmented_prompt = f"{context.prompt}\\n\\n--- Augmented Context ---\\n{context_str}"
+    return {"augmented_prompt": augmented_prompt}
+
+@app.get("/lineage/trace", summary="Returns ancestry of mutation")
+def trace_lineage(mutation_id: str):
+    """Traces and returns the full ancestry of a given mutation from the mock vault."""
+    logger.info(f"Tracing lineage for mutation {mutation_id}")
+    if mutation_id not in mock_vault["lineage_graph"]:
+        raise HTTPException(status_code=404, detail="Mutation ID not found in lineage graph.")
+
+    ancestry = []
+    current_id = mutation_id
+    while current_id:
+        node = mock_vault["lineage_graph"].get(current_id)
+        if not node:
+            ancestry.append({"id": current_id, "description": "Branch point or initial commit"})
+            break
+        ancestry.append({"id": current_id, "description": node["description"]})
+        current_id = node.get("parent")
+
+    return {"mutation_id": mutation_id, "ancestry": list(reversed(ancestry))}
+
+@app.post("/agent/dispatch", summary="Role-based agent execution")
+def dispatch_agent(dispatch: AgentDispatchModel):
+    """Dispatches a task to an agent based on its role."""
+    logger.info(f"Dispatching task to agent with role: {dispatch.agent_role}")
+    if dispatch.agent_role not in mock_vault["agent_registry"]:
+        raise HTTPException(status_code=404, detail=f"Agent role '{dispatch.agent_role}' not found in registry.")
+
+    # Simulate dispatching the task
+    return {
+        "message": f"Task dispatched to agent role '{dispatch.agent_role}'",
+        "task": dispatch.task_description,
+        "dispatched_to": dispatch.agent_role,
+    }

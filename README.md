@@ -1,4 +1,18 @@
-# Optimizer
+# Jules Mission Ω: The Optimizer Open Protocol
+
+This repository is the home of the **Jules Mission Ω Open Protocol**, a framework for building, benchmarking, and evolving autonomous AI agents. The system is designed to be mutation-aware, self-healing, and lineage-anchored, providing a transparent and collaborative environment for agentic development.
+
+While it originated as a virtual node simulator, the project has expanded into a full-fledged agentic orchestration platform.
+
+## Getting Started with the Open Protocol
+
+-   **[Quickstart](QUICKSTART.md):** The fastest way to get the environment set up and running.
+-   **[Project Summary](PROJECT_SUMMARY.md):** A high-level overview of the key modules and their purpose.
+-   **[Contributing Guide](CONTRIBUTING.md):** Guidelines for contributing to the protocol.
+
+---
+
+## Original Project: Virtual Node Simulation
 
 Augmented optimizer for virtual node and game-engine authentication matrix simulation in a 3D spacetime physics environment.
 
