@@ -1,0 +1,5 @@
+pymilvus
+openai
+psycopg2-binary
+uvicorn
+fastapi

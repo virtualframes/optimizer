@@ -1,0 +1,61 @@
+# k8s/base/synapse-cortex-worker.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: synapse-cortex-worker
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: synapse-cortex-worker
+  template:
+    metadata:
+      labels:
+        app: synapse-cortex-worker
+    spec:
+      containers:
+      - name: worker
+        image: synapse-python
+        command: ["python", "-m", "services.synapse-cortex.worker"]
+        env:
+        # --- Temporal Connection ---
+        - name: TEMPORAL_ADDRESS
+          value: "temporal-frontend.temporal.svc.cluster.local:7233"
+        - name: TEMPORAL_TASK_QUEUE
+          value: "cortex-workflows"
+
+        # --- Database Credentials ---
+        - name: DB_HOST
+          value: "cockroachdb-public.syzygy.svc.cluster.local"
+        - name: DB_PORT
+          value: "26257"
+        - name: DB_NAME
+          value: "synapse"
+        - name: DB_USER
+          value: "root"
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: cockroachdb-creds
+              key: password
+              optional: true # Allow running without a password if the secret is not present
+
+        # --- Milvus Connection ---
+        - name: MILVUS_HOST
+          value: "milvus.synapse-system.svc.cluster.local"
+        - name: MILVUS_PORT
+          value: "19530"
+
+        # --- OpenAI Credentials ---
+        - name: OPENAI_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: openai-creds
+              key: api-key
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "1"
+          limits:
+            memory: "2Gi"
+            cpu: "2"
