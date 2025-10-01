@@ -1,0 +1,46 @@
+# k8s/base/semantic-search-api.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: semantic-search-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: semantic-search-api
+  template:
+    metadata:
+      labels:
+        app: semantic-search-api
+    spec:
+      containers:
+      - name: api
+        image: synapse-python
+        command: ["uvicorn", "services.semantic_search_api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+        env:
+        - name: OPENAI_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: openai-creds
+              key: api-key
+        - name: MILVUS_HOST
+          value: "milvus.synapse-system.svc.cluster.local"
+        - name: MILVUS_PORT
+          value: "19530"
+        ports:
+        - containerPort: 8000
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: semantic-search-api
+spec:
+  selector:
+    app: semantic-search-api
+  ports:
+  - port: 8000
+    targetPort: 8000
