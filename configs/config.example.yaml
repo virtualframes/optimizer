@@ -1,0 +1,37 @@
+# Example configuration for the PSI Agent
+
+# -- General Settings --
+# The main loop's cadence in seconds.
+interval_seconds: 3600
+
+# -- Paths --
+# List of safe paths for the repo rewriter to operate on.
+# Use paths relative to the project root.
+repopath:
+  - "optimizer/"
+  - "psi_agent/"
+
+# Paths for logs, lock file, and heartbeat.
+# These are typically managed by the daemon script itself but can be overridden.
+log_path: "logs/psi_daemon.log"
+heartbeat_path: "logs/heartbeat.txt"
+lock_path: "psi_daemon.lock"
+
+# -- Database Settings --
+db:
+  # Driver can be 'sqlite' or 'neo4j'.
+  driver: "sqlite"
+  # For SQLite, this is the path to the database file.
+  sqlite_path: "data/psi_database.db"
+  # For Neo4j, provide connection details.
+  neo4j_uri: "bolt://localhost:7687"
+  neo4j_user: "neo4j"
+  neo4j_password: "password" # Use environment variables in production
+
+# -- Agent-specific Settings --
+rewrite:
+  # If true, the repo rewriter will attempt to remove print statements.
+  remove_prints: true
+  # A marker string to inject at the end of rewritten files.
+  # Leave empty to disable.
+  inject_footer: "# -- Rewritten by PSI Agent --"
