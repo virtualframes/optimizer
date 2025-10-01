@@ -52,7 +52,7 @@ def _create_milvus_collection(name: str) -> Collection:
 async def generate_embeddings(items: list[dict]) -> list[dict]:
     """Batch generate embeddings using OpenAI."""
     activity.logger.info(f"Generating embeddings for {len(items)} items.")
-    texts = [item['text'] for item in items]
+    texts = [item["text"] for item in items]
 
     response = await client.embeddings.create(
         model="text-embedding-3-small", input=texts, dimensions=1536
@@ -60,11 +60,11 @@ async def generate_embeddings(items: list[dict]) -> list[dict]:
 
     return [
         {
-            'id': items[i]['id'],
-            'text': items[i]['text'],
-            'embedding': response.data[i].embedding,
-            'metadata': items[i]['metadata'],
-            'timestamp': datetime.utcnow().isoformat(),
+            "id": items[i]["id"],
+            "text": items[i]["text"],
+            "embedding": response.data[i].embedding,
+            "metadata": items[i]["metadata"],
+            "timestamp": datetime.utcnow().isoformat(),
         }
         for i in range(len(items))
     ]
@@ -85,10 +85,10 @@ async def index_to_milvus(source: str, embeddings: list[dict]) -> int:
         _create_milvus_collection(collection_name)
 
     collection = Collection(collection_name)
-    ids = [e['id'] for e in embeddings]
-    vectors = [e['embedding'] for e in embeddings]
-    texts = [e['text'][:500] for e in embeddings]  # Truncate for storage
-    timestamps = [e['timestamp'] for e in embeddings]
+    ids = [e["id"] for e in embeddings]
+    vectors = [e["embedding"] for e in embeddings]
+    texts = [e["text"][:500] for e in embeddings]  # Truncate for storage
+    timestamps = [e["timestamp"] for e in embeddings]
 
     collection.insert([ids, vectors, texts, timestamps])
     collection.flush()
@@ -117,9 +117,9 @@ async def fetch_note_points(since: str) -> list[dict]:
     activity.logger.info(f"Fetched {len(rows)} note points.")
     return [
         {
-            'id': f"note:{row[0]}",
-            'text': f"{row[1]}\n\n{row[2][:2000]}",
-            'metadata': {'type': 'note', **(row[3] or {})},
+            "id": f"note:{row[0]}",
+            "text": f"{row[1]}\n\n{row[2][:2000]}",
+            "metadata": {"type": "note", **(row[3] or {})},
         }
         for row in rows
     ]
@@ -146,9 +146,9 @@ async def fetch_citations(since: str) -> list[dict]:
     activity.logger.info(f"Fetched {len(rows)} citations.")
     return [
         {
-            'id': f"cite:{row[0]}",
-            'text': f"{row[1]}\n{row[2]}",
-            'metadata': {'type': 'citation', 'url': row[0], 'ts': str(row[3])},
+            "id": f"cite:{row[0]}",
+            "text": f"{row[1]}\n{row[2]}",
+            "metadata": {"type": "citation", "url": row[0], "ts": str(row[3])},
         }
         for row in rows
     ]
@@ -175,13 +175,13 @@ async def fetch_audit_events(since: str) -> list[dict]:
         activity.logger.info(f"Fetched {len(rows)} audit events.")
         return [
             {
-                'id': f"audit:{row[0]}",
-                'text': f"Actor: {row[1]}, Action: {row[2]}, Details: {row[3]}",
-                'metadata': {
-                    'type': 'audit',
-                    'actor': row[1],
-                    'action': row[2],
-                    'ts': str(row[4]),
+                "id": f"audit:{row[0]}",
+                "text": f"Actor: {row[1]}, Action: {row[2]}, Details: {row[3]}",
+                "metadata": {
+                    "type": "audit",
+                    "actor": row[1],
+                    "action": row[2],
+                    "ts": str(row[4]),
                 },
             }
             for row in rows

@@ -10,6 +10,7 @@ from pymilvus import Collection, connections
 # Use an async client for a FastAPI app
 client = AsyncOpenAI()
 
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Connect to Milvus on startup
@@ -24,6 +25,7 @@ async def lifespan(app: FastAPI):
     connections.disconnect("default")
     print("Disconnected from Milvus.")
 
+
 app = FastAPI(title="Synapse Semantic Search API", lifespan=lifespan)
 
 
@@ -32,11 +34,13 @@ class SearchRequest(BaseModel):
     sources: list[str] = ["notes", "citations", "audit"]
     limit: int = 10
 
+
 class SearchResult(BaseModel):
     id: str
     text: str
     score: float
     metadata: dict
+
 
 @app.post("/search", response_model=list[SearchResult])
 async def semantic_search(req: SearchRequest):
@@ -78,6 +82,7 @@ async def semantic_search(req: SearchRequest):
     # 3. Sort results by score and return the top N
     results.sort(key=lambda x: x.score, reverse=True)
     return results[: req.limit]
+
 
 @app.get("/health")
 async def health():

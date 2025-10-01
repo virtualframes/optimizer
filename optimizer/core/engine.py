@@ -6,10 +6,12 @@ from optimizer.logging_config import get_logger
 
 logger = get_logger(__name__)
 
+
 class Engine:
     """
     An adapter for the PyBullet physics engine.
     """
+
     def __init__(self):
         """
         Initializes the physics engine.
@@ -42,4 +44,9 @@ class Engine:
         # Example of creating a simple sphere.
         # In a real application, you would store the body ID and associate it with the node.
         p.createCollisionShape(p.GEOM_SPHERE, radius=0.1)
-        p.createMultiBody(baseMass=1, baseCollisionShapeIndex=-1, baseVisualShapeIndex=-1, basePosition=node.position)
+        p.createMultiBody(
+            baseMass=1,
+            baseCollisionShapeIndex=-1,
+            baseVisualShapeIndex=-1,
+            basePosition=node.position,
+        )

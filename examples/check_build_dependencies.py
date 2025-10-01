@@ -36,7 +36,7 @@ def main():
     print()
 
     # Check individual tools
-    tools = ['gcc', 'g++', 'make', 'python']
+    tools = ["gcc", "g++", "make", "python"]
     for tool in tools:
         exists = checker.check_command(tool)
         status = "✓ Found" if exists else "✗ Missing"

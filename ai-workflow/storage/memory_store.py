@@ -4,6 +4,7 @@ from neo4j import AsyncGraphDatabase
 URI = os.getenv("NEO4J_URI")
 AUTH = (os.getenv("NEO4J_USER"), os.getenv("NEO4J_PASS"))
 
+
 class Neo4jAdapter:
     def __init__(self):
         self._driver = None
@@ -35,7 +36,9 @@ class Neo4jAdapter:
         MATCH (n:Notebook {id: $notebook_id})
         MERGE (n)-[:HAS_SECTION]->(s)
         """
-        await self._execute_query(query, section_id=sec_id, name=name, notebook_id=nb_id)
+        await self._execute_query(
+            query, section_id=sec_id, name=name, notebook_id=nb_id
+        )
 
     async def upsert_page(self, pg_id: str, title: str, sec_id: str):
         query = """
@@ -55,7 +58,10 @@ class Neo4jAdapter:
         MATCH (p:Page {id: $page_id})
         MERGE (p)-[:HAS_POINT]->(np)
         """
-        await self._execute_query(query, point_id=pt_id, type=pt_type, text=text, page_id=pg_id)
+        await self._execute_query(
+            query, point_id=pt_id, type=pt_type, text=text, page_id=pg_id
+        )
+
 
 # Global instance
 db_adapter = Neo4jAdapter()

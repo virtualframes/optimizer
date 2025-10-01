@@ -17,7 +17,7 @@ setup(
         "pytest",
         "flake8",
         "pybullet",
-        "networkx"
+        "networkx",
     ],
     entry_points={
         "console_scripts": [

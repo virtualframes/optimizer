@@ -1,9 +1,11 @@
 from typing import Dict, Any
 
+
 class Node:
     """
     Represents a virtual simulation node.
     """
+
     def __init__(self, node_id: str, position: tuple, metadata: Dict[str, Any] = None):
         """
         Initializes a Node.

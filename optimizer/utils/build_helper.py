@@ -12,6 +12,7 @@ from typing import List, Tuple, Optional
 
 class BuildDependencyError(Exception):
     """Raised when required build dependencies are missing."""
+
     pass
 
 
@@ -20,23 +21,23 @@ class DependencyChecker:
 
     # Map of common build tools to their package names
     DEPENDENCY_MAP = {
-        'apt-get': {
-            'gcc': 'gcc',
-            'g++': 'g++',
-            'make': 'make',
-            'build-essential': 'build-essential',
+        "apt-get": {
+            "gcc": "gcc",
+            "g++": "g++",
+            "make": "make",
+            "build-essential": "build-essential",
         },
-        'yum': {
-            'gcc': 'gcc',
-            'g++': 'gcc-c++',
-            'make': 'make',
-            'development-tools': 'Development Tools',
+        "yum": {
+            "gcc": "gcc",
+            "g++": "gcc-c++",
+            "make": "make",
+            "development-tools": "Development Tools",
         },
-        'apk': {
-            'gcc': 'gcc',
-            'g++': 'g++',
-            'make': 'make',
-            'build-base': 'build-base',
+        "apk": {
+            "gcc": "gcc",
+            "g++": "g++",
+            "make": "make",
+            "build-base": "build-base",
         },
     }
 
@@ -46,20 +47,20 @@ class DependencyChecker:
 
     def _detect_package_manager(self) -> str:
         """Detect the system's package manager."""
-        managers = ['apt-get', 'yum', 'apk']
+        managers = ["apt-get", "yum", "apk"]
         for manager in managers:
             if self._command_exists(manager):
                 return manager
-        return 'unknown'
+        return "unknown"
 
     def _command_exists(self, command: str) -> bool:
         """Check if a command exists in the system."""
         try:
             subprocess.run(
-                ['which', command],
+                ["which", command],
                 check=True,
                 stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE
+                stderr=subprocess.PIPE,
             )
             return True
         except subprocess.CalledProcessError:
@@ -87,7 +88,7 @@ class DependencyChecker:
         Returns:
             True if all tools are present, False otherwise
         """
-        required_tools = ['gcc', 'g++', 'make']
+        required_tools = ["gcc", "g++", "make"]
         all_present = all(self.check_command(tool) for tool in required_tools)
         return all_present
 
@@ -101,11 +102,11 @@ class DependencyChecker:
         if not self.missing_deps:
             return ""
 
-        if self.pkg_manager == 'apt-get':
+        if self.pkg_manager == "apt-get":
             return "sudo apt-get update && sudo apt-get install -y build-essential"
-        elif self.pkg_manager == 'yum':
+        elif self.pkg_manager == "yum":
             return "sudo yum groupinstall -y 'Development Tools'"
-        elif self.pkg_manager == 'apk':
+        elif self.pkg_manager == "apk":
             return "apk add --no-cache build-base"
         else:
             return "Please install build tools using your system's package manager"
@@ -127,11 +128,11 @@ class DependencyChecker:
         for dep in self.missing_deps:
             package = dep_map.get(dep, dep)
 
-            if self.pkg_manager == 'apt-get':
+            if self.pkg_manager == "apt-get":
                 cmd = f"sudo apt-get install -y {package}"
-            elif self.pkg_manager == 'yum':
+            elif self.pkg_manager == "yum":
                 cmd = f"sudo yum install -y {package}"
-            elif self.pkg_manager == 'apk':
+            elif self.pkg_manager == "apk":
                 cmd = f"apk add --no-cache {package}"
             else:
                 cmd = f"Install {package} using your system's package manager"
@@ -178,18 +179,20 @@ class DependencyChecker:
         for dep in self.missing_deps:
             lines.append(f"  ✗ {dep}")
 
-        lines.extend([
-            "",
-            "These tools are needed to compile Python packages like pybullet.",
-            "",
-            "To install all required dependencies, run:",
-            f"  {self.get_installation_command()}",
-            "",
-            "After installing dependencies, try again with:",
-            "  pip install -r requirements.txt",
-            "",
-            "=" * 60,
-        ])
+        lines.extend(
+            [
+                "",
+                "These tools are needed to compile Python packages like pybullet.",
+                "",
+                "To install all required dependencies, run:",
+                f"  {self.get_installation_command()}",
+                "",
+                "After installing dependencies, try again with:",
+                "  pip install -r requirements.txt",
+                "",
+                "=" * 60,
+            ]
+        )
 
         return "\n".join(lines)
 
