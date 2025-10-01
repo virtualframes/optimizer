@@ -1,3 +1,4 @@
+import logging
 from click.testing import CliRunner
 from optimizer.cli.main import cli
 
@@ -10,6 +11,13 @@ def test_cli_run_command():
 
 
 def test_cli_run_command_with_real_config():
+    # Reset logging to a clean state to prevent test pollution from other tests
+    # that might have configured file-based logging.
+    root_logger = logging.getLogger()
+    for handler in root_logger.handlers[:]:
+        root_logger.removeHandler(handler)
+        handler.close()
+
     runner = CliRunner()
     # Create a dummy config file for the test
     with runner.isolated_filesystem():
