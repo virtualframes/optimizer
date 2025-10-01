@@ -1,0 +1,11 @@
+{
+  "ts": 1759309663.1656268,
+  "kind": "entropy_result",
+  "payload": {
+    "prompt": "Demonstrate deterministic entropy collapse",
+    "mutated": "Demonstrate deterministic entropy collapse",
+    "level": 0.3,
+    "seed": 1337
+  },
+  "event_id": "omega-1759309663"
+}

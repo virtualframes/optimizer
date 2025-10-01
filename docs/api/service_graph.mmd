@@ -1,0 +1,8 @@
+graph TD
+  subgraph Services
+    API[FastAPI] --> Resilience[Entropy/Reroute]
+    API --> Context[Context Engine]
+    API --> Benchmark[Availability]
+    Resilience --> Audit[Audit Logs]
+    Context --> Docs[Docs & Graphs]
+  end
