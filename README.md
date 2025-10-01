@@ -1,110 +1,57 @@
-# Optimizer
+# Jules Mission Ω — Self-Evolving Agent Stack
 
-Augmented optimizer for virtual node and game-engine authentication matrix simulation in a 3D spacetime physics environment.
+Mutation-aware agents with entropy injection, lineage graphs, and ruthless benchmarking.
 
-This project provides a framework for simulating complex systems with a focus on:
-- **Virtual Node Simulation**: Core `Node` class for representing virtual simulation nodes.
-- **Physics Engine Integration**: An `Engine` adapter for PyBullet for 3D physics.
-- **Authentication Matrix**: An `AuthMatrix` module for node-to-node credential checks.
-- **REST API**: A FastAPI backend with `ingest` and `query` endpoints.
-- **CLI**: A command-line interface for launching and configuring simulations.
+**Key modules:** `optimizer/api`, `optimizer/cli`, `optimizer/context_engine`, `optimizer/memory`, `optimizer/selflearning`, `optimizer/benchmark`, `optimizer/dev`.
 
-## Getting Started
+## Quickstart
 
-### Prerequisites
-- Python 3.9+
-- Docker (optional, for containerized deployment)
-- Build tools (gcc, g++, make) - required for compiling Python packages like pybullet
-
-### Checking System Dependencies
-Before installing, you can check if all required build dependencies are available:
 ```bash
-# Using the shell script
-./scripts/install_dependencies.sh
+# 1) install
+python -m venv .venv && source .venv/bin/activate
+pip install -e .[dev,neo4j]
 
-# Or using Python
-python -m optimizer.utils.build_helper
+# 2) run API
+uvicorn optimizer.api.main:app --host 0.0.0.0 --port 8080
+
+# 3) run CLI
+jules-benchmark
+jules-risk-scan
+jules-vault-update
 ```
+## Features
 
-If any dependencies are missing, the script will provide installation commands for your system.
+*   Entropy collapse injector (omega-inject)
+*   Availability benchmarks (jules-benchmark)
+*   Lineage + service graphs (Mermaid)
+*   Neo4j lineage export (jules-export-neo4j)
+*   Auto-mutation sandbox (jules-auto-mutate)
 
-### Installation
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/optimizer.git
-   cd optimizer
-   ```
-2. Check and install system dependencies (if needed):
-   ```bash
-   # Check what's missing
-   ./scripts/install_dependencies.sh
+## Architecture
 
-   # Install on Ubuntu/Debian
-   sudo apt-get update && sudo apt-get install -y build-essential
+*   **API**: FastAPI (`optimizer/api`)
+*   **CLI**: Typer (`optimizer/cli`)
+*   **Context Engine**: JSONL append-only, retrieval tools
+*   **Memory**: Neo4j graph lineage
+*   **Self-learning**: AST transforms + sandbox validation
+*   **Benchmarking**: Stress + availability scoring
 
-   # Or on Red Hat/CentOS
-   sudo yum groupinstall -y 'Development Tools'
-   ```
-3. Install Python dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+## Development
 
-### Running the Application
-- **Via CLI**:
-  ```bash
-  optimizer --config-path config.yml
-  ```
-- **Via Docker**:
-  ```bash
-  docker-compose up --build
-  ```
-
-## Testing
-To run the test suite:
 ```bash
-pytest
+ruff check .
+pytest -q
+mypy optimizer
 ```
 
-## Build Dependencies
+## Contributing
 
-This project includes utilities to automatically detect missing build dependencies and suggest installation commands.
+See CONTRIBUTING.md and PROJECT_SUMMARY.md.
 
-### Automated Dependency Checking
-The build process automatically checks for required system dependencies (gcc, g++, make) and provides helpful error messages with installation instructions if any are missing.
+## Security
 
-### Using the Dependency Checker
+Never commit secrets. Report vulnerabilities via Security Policy.
 
-**Shell Script:**
-```bash
-./scripts/install_dependencies.sh
-```
+## License
 
-**Python Module:**
-```python
-from optimizer.utils.build_helper import check_build_dependencies, DependencyChecker
-
-# Simple check
-if not check_build_dependencies():
-    print("Some dependencies are missing")
-
-# Detailed checking
-checker = DependencyChecker()
-all_present, message = checker.verify_and_suggest()
-if not all_present:
-    print(message)
-```
-
-### Analyzing Build Errors
-The build helper can also analyze error output to detect missing dependencies:
-```python
-from optimizer.utils.build_helper import analyze_build_error
-
-error_output = "error: command 'gcc' failed with exit status 1"
-suggestion = analyze_build_error(error_output)
-if suggestion:
-    print(suggestion)
-```
-
-## CI/CD
-This project uses GitHub Actions for continuous integration. The workflow runs `pytest` and `flake8` on every push and pull request.
+Apache-2.0

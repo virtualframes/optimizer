@@ -1,44 +1,9 @@
-import logging
-from click.testing import CliRunner
-from optimizer.cli.main import cli
+from typer.testing import CliRunner
+from optimizer.cli.main import app
 
+runner = CliRunner()
 
-def test_cli_run_command():
-    runner = CliRunner()
-    result = runner.invoke(cli, ["run", "--config-path", "nonexistent.yml"])
-    assert result.exit_code != 0
-    assert "Error: Configuration file not found at 'nonexistent.yml'" in result.output
-
-
-def test_cli_run_command_with_real_config():
-    # Reset logging to a clean state to prevent test pollution from other tests
-    # that might have configured file-based logging.
-    root_logger = logging.getLogger()
-    for handler in root_logger.handlers[:]:
-        root_logger.removeHandler(handler)
-        handler.close()
-
-    runner = CliRunner()
-    # Create a dummy config file for the test
-    with runner.isolated_filesystem():
-        with open("config.yml", "w") as f:
-            f.write(
-                """
-simulation:
-  engine: "pybullet"
-  gravity: -9.8
-  time_step: 0.01
-
-api:
-  host: "0.0.0.0"
-  port: 8000
-
-logging:
-  level: "INFO"
-  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-  file: "optimizer.log"
-"""
-            )
-        result = runner.invoke(cli, ["run"])
-        assert result.exit_code == 0
-        assert "Simulation complete." in result.output
+def test_jules_benchmark():
+    result = runner.invoke(app, ["jules-benchmark", "--trials", "1"])
+    assert result.exit_code == 0
+    assert "stress complete" in result.stdout

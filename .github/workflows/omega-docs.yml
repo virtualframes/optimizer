@@ -1,0 +1,29 @@
+name: Omega Docs/Vault
+on:
+  schedule: [{cron: "17 2 * * *"}]
+  push: {branches: ["main"]}
+  workflow_dispatch:
+
+jobs:
+  vault:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install -e .[dev]
+      - run: jules-ingest-citations
+      - run: jules-benchmark
+      - run: jules-risk-scan
+      - run: jules-service-graph
+      - run: jules-auto-mutate
+      - run: jules-vault-update
+      - name: Commit artifacts
+        run: |
+          git config user.name "omega-bot"
+          git config user.email "omega-bot@users.noreply.github.com"
+          git add audit/* docs/*
+          if ! git diff --cached --quiet; then
+            git commit -m "docs(vault): refresh citations/benchmarks/risks/features"
+            git push || true
+          fi

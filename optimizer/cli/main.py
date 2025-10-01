@@ -1,48 +1,75 @@
-import click
-import os
+import typer, json, sys
+from typing import Optional
 
-from optimizer.config.settings import load_config
-from optimizer.core.engine import Engine
-from optimizer.logging_config import setup_logging, get_logger
+app = typer.Typer(help="Jules Mission Ω — command line")
 
-
-@click.group()
-def cli():
-    """Optimizer CLI for running simulations."""
-    pass
-
-
-@cli.command()
-@click.option(
-    "--config-path", default="config.yml", help="Path to the configuration file."
-)
-def run(config_path):
+@app.command("jules-run-agent")
+def run_agent(role: str = typer.Option("editor"), prompt: str = typer.Option(..., prompt=True)):
     """
-    Run a simulation.
+    Dispatch a role-based agent action (toy orchestrator hook).
     """
-    if not os.path.exists(config_path):
-        click.echo(f"Error: Configuration file not found at '{config_path}'")
-        raise click.Abort()
-    settings = load_config(config_path)
+    from optimizer.selflearning.automutator import AutoMutator # placeholder: treat as fingerprint + emit event; in real impl, call agent router
+    am = AutoMutator()
+    am.emit_event("agent_run", {"role": role, "prompt": prompt})
+    typer.echo(json.dumps({"ok": True, "role": role}))
 
-    setup_logging()
-    logger = get_logger(__name__)
+@app.command("omega-stress")
+def omega_stress(trials: int = typer.Option(5, help="Trials per task")):
+    """
+    Run availability stress suite and write audit/availability.csv + docs.
+    """
+    from optimizer.benchmark.benchmarkrunner import run_suite
+    import os
+    os.environ["OMEGA_TRIALS"] = str(trials)
+    run_suite(trials=trials)
+    typer.echo("stress complete → audit/availability.csv, docs/AVAILABILITY.md")
 
-    logger.info(f"Starting simulation from CLI with config from {config_path}...")
+@app.command("jules-export-neo4j")
+def export_neo4j(wipe: bool = typer.Option(False, help="Drop & re-create schema")):
+    """
+    Export lineage/context to Neo4j; optional full reinit.
+    """
+    from optimizer.memory.neo4j_anchor import Neo4jAnchor
+    neo = Neo4jAnchor()
+    if wipe:
+        neo.reinit_schema()
+    neo.bulk_export()
+    typer.echo("exported to Neo4j")
 
-    engine = Engine()
+# passthrough wrappers for convenience
+@app.command("jules-benchmark")
+def jules_benchmark(trials: int = 5):
+    return omega_stress(trials)
 
-    # This is a placeholder for a simulation loop.
-    # In a real application, you would load nodes and run the simulation for a specified duration.
-    logger.info("Running a short simulation loop...")
-    for i in range(100):  # Simulate 100 steps
-        engine.step_simulation()
+@app.command("jules-risk-scan")
+def jules_risk_scan():
+    from optimizer.analytics.risk_classifiers import main as risk
+    risk()
+    typer.echo("risk scan done → audit/risk_index.jsonl, docs/RISK.md")
 
-    engine.disconnect()
+@app.command("jules-vault-update")
+def jules_vault_update():
+    from optimizer.dev.vault_updater import main as vault
+    vault()
+    typer.echo("vault updated")
 
-    logger.info("Simulation finished.")
-    click.echo("Simulation complete.")
+@app.command("jules-auto-mutate")
+def jules_auto_mutate():
+    from optimizer.selflearning.automutator import main as auto_mutate
+    auto_mutate()
+    typer.echo("auto-mutate complete")
 
+@app.command("jules-ingest-citations")
+def jules_ingest_citations():
+    from optimizer.scraper.citation_ingestor import main as ingest
+    ingest()
+    typer.echo("citation ingest complete")
+
+@app.command("jules-service-graph")
+def jules_service_graph():
+    from optimizer.dev.service_graph import main as service_graph
+    service_graph()
+    typer.echo("service graph complete")
 
 if __name__ == "__main__":
-    cli()
+    app()
