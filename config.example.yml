@@ -1,0 +1,19 @@
+app_name: optimizer
+debug: false
+
+simulation:
+  time_step: 0.004166666666666667  # 1/240
+  max_steps: 1000
+  gravity: [0, 0, -9.81]
+  use_gui: false
+
+api:
+  host: "0.0.0.0"
+  port: 8000
+  reload: false
+  log_level: info
+
+logging:
+  level: INFO
+  format: json  # json or console
+  output_file: null  # or path to log file
