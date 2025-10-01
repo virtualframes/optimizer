@@ -1,25 +1,13 @@
 """
-Placeholder for the Forensic Fingerprinting module.
-
-This module is responsible for generating deterministic fingerprints (hashes)
-for various types of data, including raw scraped content, source code modules,
-and agent-generated mutations. These fingerprints are crucial for ensuring
-data integrity, tracking lineage, and enabling auditable, replayable event
-sequences in the system's memory.
+This module is responsible for creating a unique, deterministic fingerprint
+for any given piece of data (prompt, source code, etc.). This fingerprint
+is the core of the system's auditability, allowing every action and mutation
+to be traced back to its origin.
 """
+import hashlib
 
-class Fingerprint:
+def fingerprint_prompt(prompt):
     """
-    A conceptual class for generating deterministic fingerprints.
+    Creates a SHA256 hash of a prompt to serve as a unique fingerprint.
     """
-    def __init__(self):
-        """Initializes the fingerprinting mechanism (e.g., SHA-256)."""
-        pass
-
-    def fingerprint_data(self, data_content):
-        """Generates a fingerprint for a piece of data."""
-        return f"fp_data_{hash(data_content)}"
-
-    def fingerprint_module(self, module_path):
-        """Generates a fingerprint for a source code file."""
-        return f"fp_module_{hash(module_path)}"
+    return hashlib.sha256(prompt.encode()).hexdigest()

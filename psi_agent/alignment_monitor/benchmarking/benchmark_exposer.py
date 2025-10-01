@@ -10,6 +10,22 @@ AutoAligner, enabling the system to reason about its own performance and risks.
 """
 import logging
 import time
+from .flaw_detector import benchmark_alignment
+from ...orchestration.reroute_traceback import reroutetolocal_model
+from ...memory.cockroachdbledger import CockroachDBLedger
+
+ledger = CockroachDBLedger()
+
+def exposebenchmarks(agent_outputs):
+    """
+    Benchmarks agent outputs and reroutes them if they fall below a threshold.
+    """
+    for output in agent_outputs:
+        score = benchmark_alignment(output)
+        # Assuming ledger has a method to log scores
+        # ledger.log_score(output, score)
+        if score < 0.7:
+            reroutetolocal_model(output)
 
 class BenchmarkExposer:
     """

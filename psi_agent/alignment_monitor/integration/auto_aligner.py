@@ -11,27 +11,43 @@ simulator to safely apply the change to the codebase.
 import logging
 
 # Conceptual imports
-from ..benchmarking.flaw_detector import FlawDetector
-from ...mutation.mutation_engine import MutationEngine
+from ..benchmarking.flaw_detector import FlawDetector, flawdetector
+from ...mutation.mutation_engine import MutationEngine, mutate_prompt
+from ...mutation.fingerprint import fingerprint_prompt
+from ...memory.cockroachdbledger import CockroachDBLedger
 from ...orchestration.pr_simulator import PRSimulator
+
+# Initialize ledger for logging
+ledger = CockroachDBLedger()
+
+def self_align(prompt, context, threshold=0.8):
+    """
+    Recursively aligns a prompt until it meets the alignment threshold.
+    """
+    fingerprint = fingerprint_prompt(prompt)
+    alignment_score = flawdetector(prompt, context)
+    if alignment_score < threshold:
+        mutation = mutate_prompt(prompt)
+        ledger.log_mutation(fingerprint, mutation)
+        return self_align(mutation, context)
+    return prompt
 
 class AutoAligner:
     """
     Analyzes flaws and proposes mutations to the architecture.
     """
-    def __init__(self, benchmark_report):
-        self.report = benchmark_report
-        self.detector = FlawDetector(self.report)
+    def __init__(self):
         self.mutator = MutationEngine()
-        self.pr_sim = PRSimulator()
+        # self.pr_sim = PRSimulator() # This is a conceptual import, leaving it out for now
         logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-    def analyze_and_mutate(self):
+    def analyze_and_mutate(self, benchmark_report):
         """
         Detects flaws and proposes mutations to mitigate risks.
         """
         logging.info("--- Auto-Aligner Cycle Starting ---")
-        risks = self.detector.detect_entropy_risks()
+        detector = FlawDetector(benchmark_report)
+        risks = detector.detect_entropy_risks()
 
         if not risks:
             logging.info("No risks detected. Auto-aligner cycle complete.")
@@ -50,5 +66,6 @@ class AutoAligner:
                 mutation = self.mutator.adjust_agent_weights("orchestration/agent_router.py", agent, 0.5)
 
             if mutation:
-                self.pr_sim.simulate(mutation, rationale)
+                # self.pr_sim.simulate(mutation, rationale) # This is a conceptual import, leaving it out for now
+                logging.info(f"Simulating PR for mutation: {mutation} with rationale: {rationale}")
         logging.info("--- Auto-Aligner Cycle Finished ---")
