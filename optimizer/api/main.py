@@ -5,6 +5,7 @@ from typing import List, Dict, Any
 from optimizer.core.node import Node
 from optimizer.core.auth_matrix import AuthMatrix
 from optimizer.logging_config import setup_logging, get_logger
+from optimizer.api.v1.router import api_router as api_v1_router
 
 # Setup logging
 setup_logging()
@@ -15,6 +16,9 @@ app = FastAPI(
     description="API for managing and querying the virtual node simulation.",
     version="0.1.0",
 )
+
+# Mount the v1 API router
+app.include_router(api_v1_router, prefix="/api/v1")
 
 # In-memory storage (for demonstration purposes)
 nodes: Dict[str, Node] = {}
