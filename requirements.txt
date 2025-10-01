@@ -1,14 +1,28 @@
+# Core Framework
+click
 fastapi
-uvicorn[standard]
 pydantic
 pyyaml
-click
-pytest
-flake8
-pybullet
-networkx
-httpx
+uvicorn[standard]
+
+# AI & ML
+numpy
 openai
 pymilvus
+
+# Asynchronous & Messaging
+nats-py
 pytest-asyncio
 temporalio
+
+# VCS & Database
+pygithub
+neo4j
+
+# Simulation & Visualization
+networkx
+pybullet
+
+# Testing & Linting
+flake8
+pytest

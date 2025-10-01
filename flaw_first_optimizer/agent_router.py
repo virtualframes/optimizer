@@ -1,49 +1,33 @@
-# flaw_first_optimizer/agent_router.py
-
-"""
-agent_router.py: Claude/GPT/Gemini Reroute Logic.
-
-This module is responsible for selecting the appropriate agent for a given task
-and for handling rerouting logic when a fallback is triggered.
-
-Core responsibilities:
-1.  **Agent Selection:** Choose the best agent based on task type, historical performance, and current availability.
-2.  **Rerouting:** When an agent fails, select the next best agent to attempt the task.
-3.  **Load Balancing:** Distribute tasks among agents to optimize for cost, latency, and quality.
-
-This is a placeholder scaffold. The full implementation will include:
-- A registry of available agents and their capabilities.
-- A scoring system to rank agents for a given task.
-- Logic to prevent infinite reroute loops.
-"""
+# In a real implementation, this would import the Jules agent
+# and potentially other agents.
+# from jules.core.agent import JulesAgent
 
 class AgentRouter:
     """
-    Manages agent selection and rerouting.
+    Routes tasks to the appropriate agent based on the task type,
+    system state, and available resources.
     """
-    def __init__(self, agents=['Claude', 'GPT', 'Gemini']):
+    def __init__(self):
         """
-        Initializes the AgentRouter with a list of available agents.
-        This is a scaffold.
+        Initializes the AgentRouter.
         """
-        self.agents = agents
-        print(f"AgentRouter initialized with agents: {self.agents} (Scaffold)")
+        # In a real implementation, this would initialize the available agents.
+        # self.agents = {
+        #     "jules": JulesAgent(...)
+        # }
+        print("AgentRouter initialized.")
 
-    def select_agent(self, task, attempted_agents=[]):
+    async def route_task(self, task_description: str):
         """
-        Selects the best agent for a task, excluding already attempted agents.
-        This is a placeholder for the agent selection logic.
+        Selects the appropriate agent and dispatches the task.
         """
-        available_agents = [agent for agent in self.agents if agent not in attempted_agents]
-        if not available_agents:
-            return None # No agents left to try
+        print(f"Routing task: {task_description}")
 
-        # Simple selection logic for now. A real implementation would be more complex.
-        selected_agent = available_agents[0]
-        print(f"Task '{task}' routed to agent: {selected_agent} (Scaffold)")
-        return selected_agent
+        # For now, we will always route to a placeholder for the Jules agent.
+        agent = "jules" # self.agents["jules"]
+        print(f"Task routed to agent: {agent}")
 
-if __name__ == '__main__':
-    router = AgentRouter()
-    router.select_agent("Translate a document.")
-    router.select_agent("Generate a code snippet.", attempted_agents=['Claude'])
+        # In a real implementation, we would trigger the agent's workflow.
+        # For example, by calling the Temporal trigger.
+        # await agent.execute_task(task_description)
+        return f"Task '{task_description}' routed to {agent}."

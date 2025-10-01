@@ -1,0 +1,1 @@
+# This file marks the activities directory as a Python package.

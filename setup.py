@@ -1,27 +1,28 @@
 from setuptools import setup, find_packages
 
+# Read the contents of your README file
+from pathlib import Path
+this_directory = Path(__file__).parent
+long_description = (this_directory / "README.md").read_text()
+
+# Read the contents of your requirements file
+with open('requirements.txt') as f:
+    requirements = f.read().splitlines()
+
 setup(
-    name="optimizer",
+    name="syzygy-synapse",
     version="0.1.0",
-    description="Augmented optimizer for virtual node and game-engine authentication matrix simulation.",
-    long_description=open("README.md").read(),
+    description="A multi-agent, self-healing software development framework.",
+    long_description=long_description,
     long_description_content_type="text/markdown",
     author="Jules",
     packages=find_packages(),
-    install_requires=[
-        "fastapi",
-        "uvicorn[standard]",
-        "pydantic",
-        "pyyaml",
-        "click",
-        "pytest",
-        "flake8",
-        "pybullet",
-        "networkx",
-    ],
+    install_requires=requirements,
     entry_points={
         "console_scripts": [
-            "optimizer=optimizer.cli.main:cli",
+            "syzygy=flaw_first_optimizer.psi_kernel:main",
+            "jules-worker=jules.worker:main",
+            "jules-trigger=jules.workflow:main",
         ],
     },
     classifiers=[

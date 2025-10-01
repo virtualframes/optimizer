@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jules-worker
+  namespace: syzygy-synapse
+  labels:
+    app: jules-worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jules-worker
+  template:
+    metadata:
+      labels:
+        app: jules-worker
+    spec:
+      containers:
+      - name: jules-worker
+        image: virtualframes/optimizer:latest
+        imagePullPolicy: IfNotPresent
+        command: ["jules-worker"]
+        envFrom:
+        - secretRef:
+            name: syzygy-secrets
+        env:
+        - name: TEMPORAL_SERVER
+          value: "temporal-frontend.temporal.svc.cluster.local:7233"
