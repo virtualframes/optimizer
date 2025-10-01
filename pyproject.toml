@@ -36,6 +36,7 @@ dependencies = [
 atlas = ["PyYAML>=6.0.2", "pathspec>=0.12.1", "requests>=2.32", "beautifulsoup4>=4.12"]
 dev = ["httpx", "temporalio", "pytest-asyncio", "openai", "pymilvus"]
 neo4j = ["neo4j"]
+vm = ["docker", "GitPython", "typer", "rich"]
 
 [project.scripts]
 # From setup.py
@@ -59,3 +60,7 @@ jules-index-context = "optimizer.contextengine.spacetimeindexer:main"
 jules-retrieve-context = "optimizer.contextengine.contextretriever:main"
 jules-auto-mutate = "optimizer.selflearning.automutator:main"
 jules-generate-dashboard = "optimizer.dev.dashboard_generator:main"
+jules-vm = "optimizer.cli.vm:app"
+
+[tool.setuptools.packages.find]
+include = ["optimizer*"]

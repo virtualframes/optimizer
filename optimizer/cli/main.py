@@ -1,42 +1,19 @@
-import click
+import typer
+from optimizer.cli import vm
 
-from optimizer.core.engine import Engine
-from optimizer.core.settings import JulesSettings
-from optimizer.logging_config import setup_logging, get_logger
+app = typer.Typer(
+    name="jules",
+    help="Jules Mission Ω - The mutation-aware agentic orchestration platform.",
+    no_args_is_help=True,
+)
 
+# Add the new command group
+app.add_typer(vm.app)
 
-@click.group()
-def cli():
-    """Optimizer CLI for running simulations."""
-    pass
-
-
-@cli.command()
+@app.command()
 def run():
-    """
-    Run a simulation.
-    """
-    # Settings are now loaded automatically from .env
-    settings = JulesSettings()
-
-    setup_logging()
-    logger = get_logger(__name__)
-
-    logger.info("Starting simulation from CLI...")
-    logger.info(f"Running in '{settings.jules_env}' environment.")
-
-    engine = Engine()
-
-    # This is a placeholder for a simulation loop.
-    logger.info("Running a short simulation loop...")
-    for i in range(100):  # Simulate 100 steps
-        engine.step_simulation()
-
-    engine.disconnect()
-
-    logger.info("Simulation finished.")
-    click.echo("Simulation complete.")
-
+    """A placeholder for the main 'jules-run-agent' command."""
+    print("Running main agent... (to be implemented)")
 
 if __name__ == "__main__":
-    cli()
+    app()
