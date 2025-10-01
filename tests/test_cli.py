@@ -3,10 +3,9 @@ from optimizer.cli.main import cli
 
 def test_cli_run_command():
     runner = CliRunner()
-    # We expect this to fail because the config file doesn't exist, but it shows the command runs.
     result = runner.invoke(cli, ['run', '--config-path', 'nonexistent.yml'])
-    assert result.exit_code == 0
-    assert "Error: Configuration file not found" in result.output
+    assert result.exit_code != 0
+    assert "Error: Configuration file not found at 'nonexistent.yml'" in result.output
 
 def test_cli_run_command_with_real_config():
     runner = CliRunner()

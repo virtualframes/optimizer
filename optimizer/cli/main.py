@@ -1,4 +1,5 @@
 import click
+import os
 
 from optimizer.config.settings import load_config
 from optimizer.core.engine import Engine
@@ -15,11 +16,10 @@ def run(config_path):
     """
     Run a simulation.
     """
-    try:
-        settings = load_config(config_path)
-    except FileNotFoundError:
+    if not os.path.exists(config_path):
         click.echo(f"Error: Configuration file not found at '{config_path}'")
-        return
+        raise click.Abort()
+    settings = load_config(config_path)
 
     setup_logging()
     logger = get_logger(__name__)

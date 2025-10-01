@@ -8,3 +8,7 @@ flake8
 pybullet
 networkx
 httpx
+openai
+pymilvus
+pytest-asyncio
+temporalio

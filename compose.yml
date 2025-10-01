@@ -9,3 +9,30 @@ services:
       - .:/app
     environment:
       - PYTHONUNBUFFERED=1
+
+  self-healing:
+    build:
+      context: ./services/self_healing
+    command: python worker.py
+    volumes:
+      - ./services/self_healing:/app
+    depends_on:
+      - api
+
+  xbow-validator:
+    build:
+      context: ./services/xbow_validator
+    command: python worker.py
+    volumes:
+      - ./services/xbow_validator:/app
+    depends_on:
+      - api
+
+  palantir-harvester:
+    build:
+      context: ./services/palantir_harvester
+    command: python worker.py
+    volumes:
+      - ./services/palantir_harvester:/app
+    depends_on:
+      - api
