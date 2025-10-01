@@ -1,0 +1,5 @@
+requests
+beautifulsoup4
+networkx
+matplotlib
+neo4j
