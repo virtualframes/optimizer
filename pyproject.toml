@@ -1,0 +1,74 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "optimizer"
+version = "0.1.0"
+description = "Augmented optimizer for virtual node and game-engine authentication matrix simulation."
+readme = "README.md"
+authors = [{ name = "Jules" }]
+license = { text = "MIT License" }
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+]
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "pydantic",
+    "pyyaml",
+    "click",
+    "pytest",
+    "flake8",
+    "pybullet",
+    "networkx",
+    "pathspec>=0.12.1",
+    "requests>=2.32",
+    "beautifulsoup4>=4.12",
+]
+
+[project.optional-dependencies]
+atlas = ["PyYAML>=6.0.2", "pathspec>=0.12.1", "requests>=2.32", "beautifulsoup4>=4.12"]
+dev = ["httpx", "temporalio", "pytest-asyncio", "openai", "pymilvus"]
+neo4j = ["neo4j"]
+vm = [
+    "psutil",
+    "paramiko",
+    "cryptography",
+    "pywinrm",
+    "fabric",
+    "docker",
+    "pywin32; sys_platform == 'win32'"
+]
+
+[project.scripts]
+# Existing scripts from setup.py
+optimizer = "optimizer.cli.main:cli"
+map-tree = "optimizer.research.tree_mapper:main"
+api-map = "optimizer.apiatlas.cli:map_main"
+api-health = "optimizer.apiatlas.cli:health_main"
+api-heal = "optimizer.apiatlas.cli:heal_main"
+api-debug = "optimizer.apiatlas.cli:debug_main"
+jules-export-neo4j = "optimizer.memory.neo4j_export:main"
+jules-service-overlay = "optimizer.dev.service_route_overlay:main"
+jules-risk-scan = "optimizer.analytics.risk_classifiers:main"
+
+# New scripts from user request
+jules-run-agent = "optimizer.cli.main:run"
+omega-inject = "optimizer.resilience.entropy:main"
+omega-stress = "optimizer.benchmark.availability_stress:main"
+jules-index-context = "optimizer.contextengine.spacetimeindexer:main"
+jules-retrieve-context = "optimizer.contextengine.contextretriever:main"
+jules-auto-mutate = "optimizer.selflearning.automutator:main"
+jules-generate-dashboard = "optimizer.dev.dashboard_generator:main"
+
+[project.urls]
+Homepage = "https://github.com/virtualframes/optimizer"
+Issues = "https://github.com/virtualframes/optimizer/issues"
+
+[tool.setuptools.packages.find]
+include = ["optimizer*"]

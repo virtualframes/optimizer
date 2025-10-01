@@ -26,3 +26,14 @@ pymilvus
 
 [neo4j]
 neo4j
+
+[vm]
+psutil
+paramiko
+cryptography
+pywinrm
+fabric
+docker
+
+[vm:sys_platform == "win32"]
+pywin32

@@ -3,6 +3,9 @@ Name: optimizer
 Version: 0.1.0
 Summary: Augmented optimizer for virtual node and game-engine authentication matrix simulation.
 Author: Jules
+License: MIT License
+Project-URL: Homepage, https://github.com/virtualframes/optimizer
+Project-URL: Issues, https://github.com/virtualframes/optimizer/issues
 Classifier: Development Status :: 3 - Alpha
 Classifier: Intended Audience :: Developers
 Classifier: License :: OSI Approved :: MIT License
@@ -35,14 +38,15 @@ Requires-Dist: openai; extra == "dev"
 Requires-Dist: pymilvus; extra == "dev"
 Provides-Extra: neo4j
 Requires-Dist: neo4j; extra == "neo4j"
-Dynamic: author
-Dynamic: classifier
-Dynamic: description
-Dynamic: description-content-type
+Provides-Extra: vm
+Requires-Dist: psutil; extra == "vm"
+Requires-Dist: paramiko; extra == "vm"
+Requires-Dist: cryptography; extra == "vm"
+Requires-Dist: pywinrm; extra == "vm"
+Requires-Dist: fabric; extra == "vm"
+Requires-Dist: docker; extra == "vm"
+Requires-Dist: pywin32; sys_platform == "win32" and extra == "vm"
 Dynamic: license-file
-Dynamic: provides-extra
-Dynamic: requires-dist
-Dynamic: summary
 
 # Optimizer
 
